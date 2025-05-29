@@ -9,3 +9,6 @@
   padding: 0 15px;
   margin: 0 auto;
 }
+.inputText {
+  @apply font-roboto font-normal text-xs text-[#3E3232];
+}
