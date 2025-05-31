@@ -12,7 +12,7 @@ export const Header = () => {
                 </button>
                 <h4 className="font-roboto font-bold text-[22px] text-[#FC4308] max-phone:hidden">Mega.news</h4>
                 <nav className="max-lg:hidden">
-                    <ul className="flex items-center lg:gap-[34px]">
+                    <ul className="flex items-center gap-[34px]">
                         <li><a href="">Categories</a></li>
                         <li><a href="">Pages</a></li>
                         <li><a href="">contact us</a></li>
@@ -24,7 +24,7 @@ export const Header = () => {
                 <div><span>userName</span></div>
                 <div><span>save</span></div>
             </div>
-            <div className="relative h-full text-[#3E3232] w-full lg:w-[390px] lg:order-1">
+            <div className="relative h-full text-[#3E3232] w-full lg:w-[300px] lg:order-1">
                 <button className="absolute  rotate-90 top-3.5 left-1 text-xl"><GoKebabHorizontal/></button>
                 <input className="bg-[#F5F5F5] rounded-2xl h-full w-full pl-9 inputText" type="text" placeholder="Search anything" />
                 <button className="absolute right-4 top-3.5 text-xl"><FaSearch/></button>
