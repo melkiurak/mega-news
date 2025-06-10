@@ -13,6 +13,9 @@ h6 {
   padding: 0;
   margin: 0;
 }
+.text-h5 {
+  @apply font-roboto text-base font-medium text-[#3E3232];
+}
 .container {
   max-width: 1527px;
   width: 100%;
