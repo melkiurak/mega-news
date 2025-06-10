@@ -1,11 +1,38 @@
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GoKebabHorizontal } from "react-icons/go";
+import { IoCloseSharp } from "react-icons/io5";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 export const Header = () => {
+    const [burger, setBurger] = useState(false);
+
+
     return <header className="h-[48px] mt-[45px]">
         <div className="container flex items-center justify-between phone:flex-wrap gap-2.5 h-full">
+            {burger && (
+                <div className="fixed top-0 left-0 bg-white w-full h-full z-10 px-5 py-[15px]">
+                    <div className="flex justify-between items-center">
+                        <h4 className="font-roboto font-bold text-[22px] text-[#FC4308]">Mega.news</h4>
+                        <button className="w-12 h-12" onClick={() => setBurger(false)}><IoCloseSharp className="w-full h-full" /></button>
+                    </div>
+                    <div>
+                        <button className="bg-[#F5F5F5] rounded-xl flex items-center justify-between w-full p-[15px]">
+                            <span className="text-h5">Categories</span>
+                            <MdKeyboardArrowRight className="w-6 h-6"/>
+                        </button>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="" className="text-h5">Pages</a></li>
+                            <li><a href="" className="text-h5">contact us</a></li>
+                            <li><a href="" className="text-h5">about us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            )}
             <div className="h-full flex items-center gap-8 lg:flex-1">
-                <button className='xl:hidden w-12 h-12 relative z-[2] overflow-hidden bg-[#F5F5F5] rounded-2xl'>
+                <button className='xl:hidden w-12 h-12 relative z-[2] overflow-hidden bg-[#F5F5F5] rounded-2xl' onClick={() =>  setBurger(true)}>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl'></span>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% - 5px)" }}></span>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% + 5px)" }}></span>
