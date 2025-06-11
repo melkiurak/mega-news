@@ -45,8 +45,8 @@ export const Header = () => {
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% - 5px)" }}></span>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% + 5px)" }}></span>
                 </button>
-                <h4 className="font-roboto font-bold text-[22px] text-[#FC4308] min-md:hidden">Mega.news</h4>
-                <nav className="max-xl:hidden">
+                <h4 className="font-roboto font-bold text-[22px] text-[#FC4308] hidden phone:block">Mega.news</h4>
+                <nav className="xl:block hidden">
                     <ul className="flex items-center gap-[34px]">
                         <li >
                             <button>
@@ -63,7 +63,7 @@ export const Header = () => {
                     </ul>
                 </nav>
             </div>
-            <div className="flex items-center gap-[50px] max-phone:hidden lg:order-2">
+            <div className="items-center gap-[50px] phone:flex hidden lg:order-2">
                 <div><span>userName</span></div>
                 <div><span>save</span></div>
             </div>
