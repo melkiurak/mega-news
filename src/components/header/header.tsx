@@ -3,6 +3,8 @@ import { FaSearch } from "react-icons/fa";
 import { GoKebabHorizontal } from "react-icons/go";
 import { IoCloseSharp } from "react-icons/io5";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import rectangle from '@icons/rectangle.png'
+import { IoIosArrowDown } from "react-icons/io";
 
 export const Header = () => {
     const [burger, setBurger] = useState(false);
@@ -11,22 +13,28 @@ export const Header = () => {
     return <header className="h-[48px] mt-[45px]">
         <div className="container flex items-center justify-between phone:flex-wrap gap-2.5 h-full">
             {burger && (
-                <div className="fixed top-0 left-0 bg-white w-full h-full z-10 px-5 py-[15px]">
+                <div className="fixed top-0 left-0 bg-white w-full h-full z-10 px-5 py-[15px] flex flex-col gap-5">
                     <div className="flex justify-between items-center">
                         <h4 className="font-roboto font-bold text-[22px] text-[#FC4308]">Mega.news</h4>
                         <button className="w-12 h-12" onClick={() => setBurger(false)}><IoCloseSharp className="w-full h-full" /></button>
                     </div>
                     <div>
                         <button className="bg-[#F5F5F5] rounded-xl flex items-center justify-between w-full p-[15px]">
-                            <span className="text-h5">Categories</span>
+                            <div className="flex items-center gap-2">
+                                <img src={rectangle} alt="" />
+                                <span className="text-h5">Categories</span>
+                            </div>
                             <MdKeyboardArrowRight className="w-6 h-6"/>
                         </button>
                     </div>
                     <nav>
                         <ul>
-                            <li><a href="" className="text-h5">Pages</a></li>
-                            <li><a href="" className="text-h5">contact us</a></li>
-                            <li><a href="" className="text-h5">about us</a></li>
+                            <li className="py-[15px] px-2 flex justify-between items-center" >
+                                <a href="#d" className="text-h5">Pages</a>
+                                <IoIosArrowDown className="w-5 h-5"/>
+                            </li>
+                            <li className="py-[15px] px-2"><a href="#s" className="text-h5">Contact Us</a></li>
+                            <li className="py-[15px] px-2"><a href="#s" className="text-h5">About Us</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -37,7 +45,7 @@ export const Header = () => {
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% - 5px)" }}></span>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% + 5px)" }}></span>
                 </button>
-                <h4 className="font-roboto font-bold text-[22px] text-[#FC4308] max-phone:hidden">Mega.news</h4>
+                <h4 className="font-roboto font-bold text-[22px] text-[#FC4308] min-md:hidden">Mega.news</h4>
                 <nav className="max-xl:hidden">
                     <ul className="flex items-center gap-[34px]">
                         <li >
