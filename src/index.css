@@ -17,10 +17,7 @@ h6 {
   @apply font-roboto text-base font-medium text-[#3E3232];
 }
 .container {
-  max-width: 1527px;
-  width: 100%;
-  padding: 0 15px;
-  margin: 0 auto;
+  @apply max-w-[1527px] w-full py-0 px-[15px] sm:px-[70px] m-auto;
 }
 
 .inputText {

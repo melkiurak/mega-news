@@ -10,7 +10,7 @@ export const Header = () => {
     const [burger, setBurger] = useState(false);
 
 
-    return <header className="h-[48px] mt-[45px]">
+    return <header className=" mt-[45px] mb-[58px]">
         <div className="container flex items-center justify-between phone:flex-wrap gap-2.5 h-full">
             {burger && (
                 <div className="fixed top-0 left-0 bg-white w-full h-full z-10 px-5 py-[15px] flex flex-col gap-5">
@@ -67,9 +67,9 @@ export const Header = () => {
                 <div><span>userName</span></div>
                 <div><span>save</span></div>
             </div>
-            <div className="relative h-full text-[#3E3232] w-full lg:w-[465px] lg:order-1">
+            <div className="relative text-[#3E3232] w-full lg:w-[465px] lg:order-1">
                 <button className="absolute  rotate-90 top-3.5 left-1 text-xl"><GoKebabHorizontal/></button>
-                <input className="bg-[#F5F5F5] rounded-2xl h-full w-full pl-9 inputText" type="text" placeholder="Search anything" />
+                <input className="bg-[#F5F5F5] rounded-2xl w-full pl-9 inputText py-[17px]" type="text" placeholder="Search anything" />
                 <button className="absolute right-4 top-3.5 text-xl"><FaSearch/></button>
             </div>
         </div>

@@ -9,6 +9,7 @@ export default defineConfig({
     alias: {
       "@components": path.resolve(__dirname, "src/components"),
       "@icons": path.resolve(__dirname, "src/assets/icons"),
+      "@img": path.resolve(__dirname, "src/assets/img"),
     },
   },
 });
