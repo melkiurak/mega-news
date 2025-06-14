@@ -20,9 +20,15 @@ h6 {
   @apply font-roboto text-base font-medium text-[#3E3232];
 }
 .container {
-  @apply max-w-[1527px] w-full py-0 lg:px-[15px] px-[70px] m-auto;
+  @apply max-w-[1527px] w-full py-0  md:px-[70px] px-[16px] m-auto;
 }
 
 .inputText {
   @apply font-roboto font-normal text-xs text-[#3E3232];
+}
+.bg-card {
+  @apply w-full h-full hidden lg:flex items-end flex-1 bg-no-repeat rounded-xl bg-cover bg-center;
+}
+.bg-card__panel {
+  @apply bg-[#FFFFFFBF] rounded-xl m-[10px] p-4 flex flex-col gap-3;
 }
