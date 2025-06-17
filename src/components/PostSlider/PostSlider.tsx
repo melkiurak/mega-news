@@ -1,6 +1,7 @@
 import rectangle from '@icons/rectangle.png'
 import { ButtonSwitch } from '../buttonSwitch/ButtonSwitch'
 import type { Post } from '../../types'
+import { CiBookmark } from "react-icons/ci";
 
 interface PostSliderProps {
   post: Post;
@@ -25,7 +26,9 @@ export const PostSlider = ({post}:PostSliderProps) => {
                     <div></div>
                     <div></div>
                 </div>
-                <button></button>
+                <button>
+                    <CiBookmark/>
+                </button>
             </div>
         </div>
     </div>
