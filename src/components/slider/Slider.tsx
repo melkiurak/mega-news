@@ -4,7 +4,7 @@ import singleContent1 from '@img/SingleContent.png'
 import singleContent2 from '@img/SingleContent2.png' 
 export const Slider = () => {
     
-    return <div className='flex justify-between gap-5 items-center h-[367px] lg:h-[452px]'>
+    return <div className=' hidden sm:flex justify-between gap-5 items-center h-[367px] lg:h-[452px]'>
         <div className="bg-card" style={{backgroundImage: `url("${singleContent2}")`}}>
             <div className="bg-card__panel">
                 <h4 className='text-h4'>How to Drive a Car Safely</h4>
