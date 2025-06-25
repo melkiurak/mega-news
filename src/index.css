@@ -22,7 +22,9 @@ h6 {
 .container {
   @apply max-w-[1527px] w-full py-0  md:px-[70px] px-[16px] m-auto;
 }
-
+.wrapper {
+  @apply min-h-screen grid grid-rows-[auto_1fr_auto];
+}
 .inputText {
   @apply font-roboto font-normal text-xs text-[#3E3232];
 }
@@ -31,4 +33,10 @@ h6 {
 }
 .bg-card__panel {
   @apply bg-[#FFFFFFBF] rounded-xl m-[10px] p-4 flex flex-col gap-3;
+}
+.footer__btn {
+  @apply bg-[#F5F5F5] rounded-xl p-2.5;
+}
+.footer__icon {
+  @apply text-[#3E3232] text-xl;
 }

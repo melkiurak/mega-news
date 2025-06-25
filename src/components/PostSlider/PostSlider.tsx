@@ -8,7 +8,7 @@ interface PostSliderProps {
 }
 
 
-export const PostSlider = ({post}:PostSliderProps) => {
+export const  PostSlider = ({post}:PostSliderProps) => {
     return <div className="flex flex-col gap-5">
         <div className='flex justify-between w-full'>
             <div className='flex items-center gap-2'> 
