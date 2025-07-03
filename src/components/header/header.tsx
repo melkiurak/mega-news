@@ -5,6 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import rectangle from '@icons/rectangle.png'
 import { IoIosArrowDown } from "react-icons/io";
+import { NavLink } from "react-router";
 
 export const Header = () => {
     const [burger, setBurger] = useState(false);
@@ -64,7 +65,11 @@ export const Header = () => {
                 </nav>
             </div>
             <div className="items-center gap-[50px] phone:flex hidden lg:order-2">
-                <div><span>userName</span></div>
+                <div>
+                    <NavLink to='/account' end>
+                        Login
+                    </NavLink>
+                </div>
                 <div><span>save</span></div>
             </div>
             <div className="relative text-[#3E3232] w-full lg:w-[465px] lg:order-1">
