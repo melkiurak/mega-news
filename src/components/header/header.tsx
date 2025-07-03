@@ -66,7 +66,7 @@ export const Header = () => {
             </div>
             <div className="items-center gap-[50px] phone:flex hidden lg:order-2">
                 <div>
-                    <NavLink to='/account' end>
+                    <NavLink to='/login' end>
                         Login
                     </NavLink>
                 </div>

@@ -5,3 +5,8 @@ export interface Post {
   description: string;
   name: string;
 }
+export interface CreateUser {
+  name: string;
+  email: string;
+  password: string;
+}
