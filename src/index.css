@@ -14,6 +14,9 @@ h6 {
   padding: 0;
   margin: 0;
 }
+input {
+  @apply rounded-xl bg-[#F5F5F5] h-full w-full border border-[#E6E6E6] text-[#3E3232] pl-[1.0625rem] outline-none;
+}
 .paragraph {
   @apply text-[#3e3232b7] font-roboto text-sm font-normal;
 }
