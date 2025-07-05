@@ -7,6 +7,6 @@ export interface Post {
 }
 export interface CreateUser {
   name: string;
-  email: string;
   password: string;
+  avatar: File | null;
 }
