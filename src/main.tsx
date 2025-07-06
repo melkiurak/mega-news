@@ -7,9 +7,10 @@ import { Login } from './components/Login/Login.tsx';
 import { NotFoundPage } from './components/404/404.tsx';
 
 const router = createBrowserRouter([
-  {path: '/', element: <App/>},
+  {path: '/', element: <App/>, children: [
+    {path:'*', element: <NotFoundPage/>}
+  ]},
   {path:'/login', element: <Login/>},
-  {path:'*', element: <NotFoundPage/>}
 ]);
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
