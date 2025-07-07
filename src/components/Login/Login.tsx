@@ -3,16 +3,25 @@ import type { CreateUser } from "../../types"
 import  Parse  from '../../lib/parseClient';
 import { FaRegUser } from "react-icons/fa";
 import { RxLockClosed } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { userActionType } from "../../redux/reducers/users-reducer";
 export const Login = () => {
     const [formData, setFormData] = useState<CreateUser>({
         name: '',
         password: '',
         avatar: null,
     });
+    const dispatch = useDispatch();
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await Parse.User.signUp(formData.name, formData.password, {avatar: formData.avatar}); 
-        console.log(formData.name, formData.password)
+        try{
+            await Parse.User.signUp(formData.name, formData.password, {avatar: formData.avatar}); 
+            console.log(formData.name, formData.password);
+            dispatch({type: userActionType.isLoggedIn})
+        }catch( error){
+            console.error('Error register', error)
+        }
     };
     if (Parse.User.current()) {
         console.log("✅ Пользователь вошёл:", Parse.User.current()?.getUsername());
