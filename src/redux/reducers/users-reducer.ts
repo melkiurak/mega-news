@@ -1,15 +1,25 @@
-export const userActionType = {
-  isLoggedIn: "IS_LOGGED_IN",
+import { createSlice } from "@reduxjs/toolkit";
+
+interface UserState {
+  isLogin: boolean;
+}
+
+const initialState: UserState = {
+  isLogin: false,
 };
 
-export const userReducer = (
-  state = { isLogin: false },
-  action: { type: keyof typeof userActionType }
-) => {
-  switch (action.type) {
-    case userActionType.isLoggedIn:
-      return { isLogin: true };
-    default:
-      return state;
-  }
-};
+export const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    logIn(state) {
+      state.isLogin = true;
+    },
+    logOut(state) {
+      state.isLogin = false;
+    },
+  },
+});
+
+export const { logIn, logOut } = userSlice.actions;
+export default userSlice.reducer;

@@ -4,7 +4,7 @@ import  Parse  from '../../lib/parseClient';
 import { FaRegUser } from "react-icons/fa";
 import { RxLockClosed } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { userActionType } from "../../redux/reducers/users-reducer";
+import { logIn } from "../../redux/reducers/users-reducer";
 export const Login = () => {
     const [formData, setFormData] = useState<CreateUser>({
         name: '',
@@ -18,7 +18,7 @@ export const Login = () => {
         try{
             await Parse.User.signUp(formData.name, formData.password, {avatar: formData.avatar}); 
             console.log(formData.name, formData.password);
-            dispatch({type: userActionType.isLoggedIn})
+            dispatch(logIn());
         }catch( error){
             console.error('Error register', error)
         }
