@@ -1,10 +1,9 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 import { userReducer } from "./reducers/users-reducer";
 
-export type storeType = {
-  userReducer: {
-    isLogin: boolean;
-  };
-};
+const rootReducer = combineReducers({
+  userReducer,
+});
 
-export const store = createStore(userReducer);
+export const store = createStore(rootReducer);
+export type storeType = ReturnType<typeof rootReducer>;
