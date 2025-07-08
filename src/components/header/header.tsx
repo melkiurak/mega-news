@@ -76,7 +76,7 @@ export const Header = () => {
                     </ul>
                 </nav>
             </div>
-            <div className="items-center gap-[30px] phone:flex hidden lg:order-2">
+            <div className="items-center gap-[30px] sm:flex hidden lg:order-2">
                 <div className="relative max-w-[134px] w-full">
                     <div className="w-full">
                         {isLogin ? (
@@ -114,13 +114,11 @@ export const Header = () => {
                         </div>
                     )}
                 </div>
-                <div>
-                    <button className="bg-[#F5F5F5] rounded-xl p-3.5">
-                        <GoBookmark className="text-xl text-[#3E3232]"/>
-                    </button>
-                </div>
+                <button className="bg-[#F5F5F5] rounded-xl p-3.5">
+                    <GoBookmark className="text-xl text-[#3E3232]"/>
+                </button>
             </div>
-            <div className="relative text-[#3E3232] w-full lg:w-[465px] lg:order-1">
+            <div className="relative text-[#3E3232] w-full lg:w-[399px] lg:order-1">
                 <button className="absolute  rotate-90 top-3.5 left-1 text-xl"><GoKebabHorizontal/></button>
                 <input className="bg-[#F5F5F5] rounded-2xl w-full pl-9 inputText py-[17px]" type="text" placeholder="Search anything" />
                 <button className="absolute right-4 top-3.5 text-xl"><FaSearch/></button>
