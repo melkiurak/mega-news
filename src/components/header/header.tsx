@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import type { storeType } from "../../redux/store";
 import  Parse  from '../../lib/parseClient';
 import { logOut } from "../../redux/reducers/users-reducer";
-import { CiBookmark } from "react-icons/ci";
 import { RxExit } from "react-icons/rx";
+import { GoBookmark } from "react-icons/go";
 
 export const Header = () => {
     const [burger, setBurger] = useState(false);
@@ -52,7 +52,7 @@ export const Header = () => {
                     </nav>
                 </div>
             )}
-            <div className="h-full flex items-center gap-8 lg:flex-1">
+            <div className="h-full flex items-center gap-3 lg:gap-8 lg:flex-1">
                 <button className='xl:hidden w-12 h-12 relative z-[2] overflow-hidden bg-[#F5F5F5] rounded-2xl' onClick={() =>  setBurger(true)}>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl'></span>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% - 5px)" }}></span>
@@ -76,7 +76,7 @@ export const Header = () => {
                     </ul>
                 </nav>
             </div>
-            <div className="items-center gap-[50px] phone:flex hidden lg:order-2">
+            <div className="items-center gap-[30px] phone:flex hidden lg:order-2">
                 <div className="relative max-w-[134px] w-full">
                     <div className="w-full">
                         {isLogin ? (
@@ -88,7 +88,7 @@ export const Header = () => {
                                         <h5 className="text-h5 text-black">{username?.charAt(0).toLocaleUpperCase()}</h5>
                                     </div>
                                 )}
-                                <h5 className="text-h5">{username}</h5>
+                                <h5 className="text-h5 max-w-[54px] truncate">{username}</h5>
                                 <button type="button" onClick={() => setUserManu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
                             </div>   
                         ) : (
@@ -98,13 +98,13 @@ export const Header = () => {
                         )}
                     </div>
                     {userMenu && (
-                        <div className="bg-white absolute shadow-lg w-full rounded-lg flex flex-col gap-5 pl-[15px] py-5">
+                        <div className="bg-white absolute top-14 shadow-lg w-full rounded-lg flex flex-col gap-5 pl-[15px] py-5 z-10">
                             <NavLink to='/' className="flex items-center gap-1.5">
                                 <FaRegUser/>
                                 <h6 className="text-h6">Profile</h6>
                             </NavLink>
                             <NavLink to='/' className="flex items-center gap-1.5">
-                                <CiBookmark/>
+                                <GoBookmark/>
                                 <h6 className="text-h6">Marked</h6>
                             </NavLink>
                             <button className="flex items-center gap-1.5" onClick={handelExit}>
@@ -114,7 +114,11 @@ export const Header = () => {
                         </div>
                     )}
                 </div>
-                <div><span>save</span></div>
+                <div>
+                    <button className="bg-[#F5F5F5] rounded-xl p-3.5">
+                        <GoBookmark className="text-xl text-[#3E3232]"/>
+                    </button>
+                </div>
             </div>
             <div className="relative text-[#3E3232] w-full lg:w-[465px] lg:order-1">
                 <button className="absolute  rotate-90 top-3.5 left-1 text-xl"><GoKebabHorizontal/></button>

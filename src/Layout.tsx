@@ -23,9 +23,7 @@ function Layout() {
     <div className='wrapper'>
       <Header />
       <main className='container'>
-        <Outlet />
       </main>
-      <Footer />
     </div>
   );
 }
