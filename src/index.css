@@ -41,9 +41,7 @@ input {
 .container {
   @apply max-w-[1527px] w-full   phone:px-container px-[16px] m-auto;
 }
-.wrapper {
-  @apply min-h-screen grid grid-rows-[auto_1fr_auto];
-}
+
 .inputText {
   @apply font-roboto font-normal text-xs text-[#3E3232];
 }

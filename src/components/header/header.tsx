@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { FaSearch, FaRegUser } from "react-icons/fa";
-import { GoKebabHorizontal } from "react-icons/go";
-import { IoCloseSharp } from "react-icons/io5";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import rectangle from '@icons/rectangle.png'
-import { IoIosArrowDown } from "react-icons/io";
-import { NavLink } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router";
+
 import type { storeType } from "../../redux/store";
 import  Parse  from '../../lib/parseClient';
 import { logOut } from "../../redux/reducers/users-reducer";
+
+
+import { FaSearch, FaRegUser } from "react-icons/fa";
+import { GoKebabHorizontal, GoBookmark } from "react-icons/go";
+import { IoCloseSharp } from "react-icons/io5";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { IoIosArrowDown } from "react-icons/io";
 import { RxExit } from "react-icons/rx";
-import { GoBookmark } from "react-icons/go";
+import rectangle from '@icons/rectangle.png'
+
 
 export const Header = () => {
     const [burger, setBurger] = useState(false);
@@ -99,7 +102,7 @@ export const Header = () => {
                     </div>
                     {userMenu && (
                         <div className="bg-white absolute top-14 shadow-lg w-full rounded-lg flex flex-col gap-5 pl-[15px] py-5 z-10">
-                            <NavLink to='/' className="flex items-center gap-1.5">
+                            <NavLink to='/profile' className="flex items-center gap-1.5">
                                 <FaRegUser/>
                                 <h6 className="text-h6">Profile</h6>
                             </NavLink>
