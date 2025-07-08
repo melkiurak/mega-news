@@ -6,11 +6,20 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import rectangle from '@icons/rectangle.png'
 import { IoIosArrowDown } from "react-icons/io";
 import { NavLink } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import type { storeType } from "../../redux/store";
+import  Parse  from '../../lib/parseClient';
+import { logOut } from "../../redux/reducers/users-reducer";
 
 export const Header = () => {
     const [burger, setBurger] = useState(false);
+    const dispacth = useDispatch();
+    const { isLogin, username, avatar } = useSelector((state:storeType) => state.user);
 
-
+    const handelExit = async () => {
+        await Parse.User.logOut();
+        dispacth(logOut());
+    };
     return <header className=" mt-[45px] mb-[58px]">
         <div className="container flex items-center justify-between phone:flex-wrap gap-2.5 h-full">
             {burger && (
@@ -65,10 +74,25 @@ export const Header = () => {
                 </nav>
             </div>
             <div className="items-center gap-[50px] phone:flex hidden lg:order-2">
+                <button onClick={handelExit}>Exit</button>
                 <div>
-                    <NavLink to='/login' end>
-                        Login
-                    </NavLink>
+                    {isLogin ? (
+                        <div className="flex items-center gap-2">
+                            {avatar ? (
+                                <div>аватарка есть</div>
+                            ) : (
+                                <div className="bg-[#F5F5F5] rounded-xl w-12 h-12 flex items-center justify-center">
+                                    <h5 className="text-h5">{username?.charAt(0).toLocaleUpperCase()}</h5>
+                                </div>
+                            )}
+                            <h5 className="text-h5">{username}</h5>
+                        </div>
+                        
+                    ) : (
+                        <NavLink to='/login' end>
+                            Login
+                        </NavLink>
+                    )}
                 </div>
                 <div><span>save</span></div>
             </div>

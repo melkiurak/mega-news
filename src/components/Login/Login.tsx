@@ -4,7 +4,7 @@ import  Parse  from '../../lib/parseClient';
 import { FaRegUser } from "react-icons/fa";
 import { RxLockClosed } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { logIn } from "../../redux/reducers/users-reducer";
+import { logIn, setUser } from "../../redux/reducers/users-reducer";
 export const Login = () => {
     const [formData, setFormData] = useState<CreateUser>({
         name: '',
@@ -16,9 +16,13 @@ export const Login = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try{
-            await Parse.User.signUp(formData.name, formData.password, {avatar: formData.avatar}); 
+            const user = await Parse.User.signUp(formData.name, formData.password, {avatar: formData.avatar}); 
             console.log(formData.name, formData.password);
             dispatch(logIn());
+            dispatch(setUser({
+                username: user.get('username'),
+                avatar: user.get('avatar'),
+            }))
         }catch( error){
             console.error('Error register', error)
         }
@@ -28,9 +32,6 @@ export const Login = () => {
     } else {
         console.log("❌ Никто не вошёл");
     } 
-    const handelExit = async () => {
-        return await Parse.User.logOut();
-    }
     return <div className="flex items-center justify-center h-[100vh]">
         <div className="flex flex-col text-center gap-5 border-[#E6E6E6] border-2 px-7 py-10 rounded-2xl max-w-[500px] w-full">
             <h1>login</h1>
@@ -58,7 +59,6 @@ export const Login = () => {
                 </div>
                 <button type="submit" onClick={handleSubmit}>Login</button>
             </form>
-            <button onClick={handelExit}>Exit</button>
         </div>
     </div>
 }
