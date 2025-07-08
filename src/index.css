@@ -14,6 +14,9 @@ h6 {
   padding: 0;
   margin: 0;
 }
+button {
+  @apply cursor-pointer;
+}
 input {
   @apply rounded-xl bg-[#F5F5F5] h-full w-full border border-[#E6E6E6] text-[#3E3232] outline-none;
 }
@@ -30,7 +33,10 @@ input {
   @apply font-roboto text-xl font-medium text-black;
 }
 .text-h5 {
-  @apply font-roboto text-base font-medium text-[#3E3232];
+  @apply font-roboto text-base font-medium;
+}
+.text-h6 {
+  @apply font-roboto text-[13px] font-medium text-[#3E3232BF];
 }
 .container {
   @apply max-w-[1527px] w-full   phone:px-container px-[16px] m-auto;

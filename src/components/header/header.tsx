@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaRegUser } from "react-icons/fa";
 import { GoKebabHorizontal } from "react-icons/go";
 import { IoCloseSharp } from "react-icons/io5";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -10,9 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import type { storeType } from "../../redux/store";
 import  Parse  from '../../lib/parseClient';
 import { logOut } from "../../redux/reducers/users-reducer";
+import { CiBookmark } from "react-icons/ci";
+import { RxExit } from "react-icons/rx";
 
 export const Header = () => {
     const [burger, setBurger] = useState(false);
+    const [userMenu, setUserManu] = useState(false);
     const dispacth = useDispatch();
     const { isLogin, username, avatar } = useSelector((state:storeType) => state.user);
 
@@ -74,24 +77,41 @@ export const Header = () => {
                 </nav>
             </div>
             <div className="items-center gap-[50px] phone:flex hidden lg:order-2">
-                <button onClick={handelExit}>Exit</button>
-                <div>
-                    {isLogin ? (
-                        <div className="flex items-center gap-2">
-                            {avatar ? (
-                                <div>аватарка есть</div>
-                            ) : (
-                                <div className="bg-[#F5F5F5] rounded-xl w-12 h-12 flex items-center justify-center">
-                                    <h5 className="text-h5">{username?.charAt(0).toLocaleUpperCase()}</h5>
-                                </div>
-                            )}
-                            <h5 className="text-h5">{username}</h5>
+                <div className="relative max-w-[134px] w-full">
+                    <div className="w-full">
+                        {isLogin ? (
+                            <div className="flex items-center gap-2">
+                                {avatar ? (
+                                    <div>аватарка есть</div>
+                                ) : (
+                                    <div className="bg-[#F5F5F5] rounded-xl w-12 h-12 flex items-center justify-center">
+                                        <h5 className="text-h5 text-black">{username?.charAt(0).toLocaleUpperCase()}</h5>
+                                    </div>
+                                )}
+                                <h5 className="text-h5">{username}</h5>
+                                <button type="button" onClick={() => setUserManu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
+                            </div>   
+                        ) : (
+                            <NavLink to='/login' end>
+                                Login
+                            </NavLink>
+                        )}
+                    </div>
+                    {userMenu && (
+                        <div className="bg-white absolute shadow-lg w-full rounded-lg flex flex-col gap-5 pl-[15px] py-5">
+                            <NavLink to='/' className="flex items-center gap-1.5">
+                                <FaRegUser/>
+                                <h6 className="text-h6">Profile</h6>
+                            </NavLink>
+                            <NavLink to='/' className="flex items-center gap-1.5">
+                                <CiBookmark/>
+                                <h6 className="text-h6">Marked</h6>
+                            </NavLink>
+                            <button className="flex items-center gap-1.5" onClick={handelExit}>
+                                <RxExit/>
+                                <h6 className="text-h6">Exit</h6>
+                            </button>
                         </div>
-                        
-                    ) : (
-                        <NavLink to='/login' end>
-                            Login
-                        </NavLink>
                     )}
                 </div>
                 <div><span>save</span></div>
