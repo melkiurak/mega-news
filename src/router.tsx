@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
-      { path: '/profile', element: <Profile /> },
+      { path: '/Profile', element: <Profile /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

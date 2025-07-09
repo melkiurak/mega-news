@@ -27,7 +27,7 @@ input {
   @apply font-medium font-roboto text-sm text-white;
 }
 .text-Input {
-  @apply font-roboto font-normal text-xs text-[#3E3232BF];
+  @apply font-roboto font-normal text-xs;
 }
 .text-h4 {
   @apply font-roboto text-xl font-medium text-black;

@@ -102,7 +102,7 @@ export const Header = () => {
                     </div>
                     {userMenu && (
                         <div className="bg-white absolute top-14 shadow-lg w-full rounded-lg flex flex-col gap-5 pl-[15px] py-5 z-10">
-                            <NavLink to='/profile' className="flex items-center gap-1.5">
+                            <NavLink to='/Profile' className="flex items-center gap-1.5">
                                 <FaRegUser/>
                                 <h6 className="text-h6">Profile</h6>
                             </NavLink>
