@@ -18,7 +18,7 @@ button {
   @apply cursor-pointer;
 }
 input {
-  @apply rounded-xl bg-[#F5F5F5] h-full w-full border border-[#E6E6E6] text-[#3E3232] outline-none;
+  @apply rounded-xl bg-[#F5F5F5] h-full w-full text-[#3E3232] outline-none;
 }
 .paragraph {
   @apply text-[#3e3232b7] font-roboto text-sm font-normal;
