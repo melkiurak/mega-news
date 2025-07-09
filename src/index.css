@@ -24,7 +24,7 @@ input {
   @apply text-[#3e3232b7] font-roboto text-sm font-normal;
 }
 .text-btn {
-  @apply font-medium font-roboto text-sm text-white;
+  @apply font-medium font-roboto text-sm;
 }
 .text-Input {
   @apply font-roboto font-normal text-xs;
