@@ -59,7 +59,7 @@ export const SendPost = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-end">
                 <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
                     <FaRegFloppyDisk/>
                     <span className="text-btn">Draft</span>
