@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import { BreadCrumb } from "../../components/breadcrumb/breadCrumb"
 import { FaUserEdit } from "react-icons/fa";
 export const Profile = () => {
-    return <div>
+    return <div className="flex flex-col gap-11">
         <BreadCrumb/>
         <div className="flex flex-col gap-[15px] bg-[#E6E6E6] p-2.5 rounded-xl">
             <div className="hidden sm:block bg-purple-600 h-[150px] w-full rounded-xl"></div>
@@ -18,7 +18,7 @@ export const Profile = () => {
                             <Link to="/">Marked</Link>
                         </li>
                         <li className="text-h5">
-                            <Link to="/">Send Post</Link>
+                            <Link to="Send-Post">Send Post</Link>
                         </li>
                         <li className="text-h5">
                             <Link to="/">Posts</Link>
@@ -31,5 +31,6 @@ export const Profile = () => {
                 </button>
             </div>
         </div>
+        <Outlet/>
     </div>
 }
