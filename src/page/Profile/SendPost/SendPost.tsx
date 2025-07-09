@@ -1,7 +1,7 @@
 import { BsCardImage } from "react-icons/bs";
-import { IoMdColorFilter } from "react-icons/io";
+import { IoMdColorFilter, IoMdPaperPlane } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
-import { FaAlignLeft, FaLink, FaPlus   } from "react-icons/fa6";
+import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
 import React from "react";
 export const SendPost = () => {
     const postTools = [
@@ -58,6 +58,20 @@ export const SendPost = () => {
                         </button>
                     </div>
                 </div>
+            </div>
+            <div className="flex gap-3 items-center">
+                <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
+                    <FaRegFloppyDisk/>
+                    <span className="text-btn">Draft</span>
+                </button>
+                <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
+                    <FaRegEye/>
+                    <span className="text-btn">Preview</span>
+                </button>
+                <button className="flex-1 bg-[#F81539BF] rounded-xl flex items-center justify-center py-2 gap-2 text-white">
+                    <IoMdPaperPlane/>
+                    <span className="text-btn">Public</span>
+                </button>
             </div>
         </form>
     </div>
