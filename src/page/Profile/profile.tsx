@@ -8,7 +8,7 @@ export const Profile = () => {
             <div className="hidden sm:block bg-purple-600 h-[150px] w-full rounded-xl"></div>
             <div className="flex lg:justify-between items-center  w-full relative">
                 <div className="flex items-center">
-                    <div className="bg-amber-500 w-[50px] aspect-square rounded-xl mr-2.5"></div>
+                    <div className="bg-amber-500 w-[50px] phone:w-[75px] aspect-square rounded-xl mr-2.5"></div>
                     <h5 className="text-h5 hidden lg:block">Louis Hoebregts</h5>
                 </div>
                 <nav className="flex flex-col gap-[17px]">
