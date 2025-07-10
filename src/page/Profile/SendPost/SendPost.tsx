@@ -2,15 +2,22 @@ import { BsCardImage } from "react-icons/bs";
 import { IoMdColorFilter, IoMdPaperPlane } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
-import React from "react";
+import React, { useState } from "react";
+import type { CreatePost } from "../../../types";
 export const SendPost = () => {
+    const [formPost, setFormPost] = useState<CreatePost>({
+        title: '',
+        tags: [],
+        imagePost: null,
+        explanation: '',
+    })
     const postTools = [
         {name: 'Image', icon:BsCardImage},
         {name: 'Color', icon:IoMdColorFilter},
         {name: 'Text', icon: FaCode},
         {name: 'Align', icon: FaAlignLeft},
         {name: 'Link', icon: FaLink},
-    ]
+    ];
     return <div>
         <form className="flex flex-col lg:flex-row gap-5">
             <div className="flex flex-col gap-6 flex-1">
@@ -18,14 +25,14 @@ export const SendPost = () => {
                     <div className="flex flex-col gap-[15px] flex-1">
                         <label htmlFor=""  className="text-h5">Title</label>
                         <div className="h-12">
-                            <input type="text" className="h-full pl-4" />
+                            <input type="text" value={formPost.title} className="h-full pl-4" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-[15px] flex-1">
                         <label htmlFor=""  className="text-h5">Add Tags</label>
                         <div className="h-12 relative">
-                            <input type="text" className="h-full pl-4" />
-                            <button className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2"><FaPlus className="text-2xl"/></button>
+                            <input type="text" className="h-full pl-4" value={formPost.tags} />
+                            <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2"><FaPlus className="text-2xl"/></button>
                         </div>
                     </div>
                 </div>
@@ -46,6 +53,7 @@ export const SendPost = () => {
                             placeholder="Type..."
                             rows="4"
                             className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full h-[377px] resize-none outline-none mt-6"
+                            value={formPost.explanation}
                         />                 
                     </div>
                 </div>

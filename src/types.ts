@@ -10,3 +10,17 @@ export interface CreateUser {
   password: string;
   avatar: File | null;
 }
+export interface Explanation {
+  image: File | null;
+  link: string;
+  text: string;
+  align: string;
+  color: string;
+}
+
+export interface CreatePost {
+  title: string;
+  tags: string[];
+  imagePost: File | null;
+  explanation: string;
+}
