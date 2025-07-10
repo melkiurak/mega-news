@@ -59,19 +59,21 @@ export const SendPost = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex gap-3 items-end">
-                <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
-                    <FaRegFloppyDisk/>
-                    <span className="text-btn">Draft</span>
-                </button>
-                <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
-                    <FaRegEye/>
-                    <span className="text-btn">Preview</span>
-                </button>
-                <button className="flex-1 bg-[#F81539BF] rounded-xl flex items-center justify-center py-2 gap-2 text-white">
-                    <IoMdPaperPlane/>
-                    <span className="text-btn">Public</span>
-                </button>
+            <div className="flex justify-end">
+                <div className="flex justify-between gap-3 max-w-[280px] md:max-w-[360px] w-full">
+                    <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
+                        <FaRegFloppyDisk/>
+                        <span className="text-btn">Draft</span>
+                    </button>
+                    <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
+                        <FaRegEye/>
+                        <span className="text-btn">Preview</span>
+                    </button>
+                    <button className="flex-1 bg-[#F81539BF] rounded-xl flex items-center justify-center py-2 gap-2 text-white">
+                        <IoMdPaperPlane/>
+                        <span className="text-btn">Public</span>
+                    </button>
+                </div>
             </div>
         </form>
     </div>
