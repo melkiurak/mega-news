@@ -10,7 +10,7 @@ export const SendPost = () => {
         tags: [],
         imagePost: null,
         explanation: '',
-    })
+    });
     const postTools = [
         {name: 'Image', icon:BsCardImage},
         {name: 'Color', icon:IoMdColorFilter},
@@ -25,7 +25,7 @@ export const SendPost = () => {
                     <div className="flex flex-col gap-[15px] flex-1">
                         <label htmlFor=""  className="text-h5">Title</label>
                         <div className="h-12">
-                            <input type="text" value={formPost.title} className="h-full pl-4" />
+                            <input type="text" value={formPost.title} onChange={(e) => setFormPost({...formPost, title:e.target.value})} className="h-full pl-4" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-[15px] flex-1">
@@ -51,9 +51,9 @@ export const SendPost = () => {
                             id="Explanation"
                             name="Explanation"
                             placeholder="Type..."
-                            rows="4"
                             className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full h-[377px] resize-none outline-none mt-6"
                             value={formPost.explanation}
+                            onChange={(e) => setFormPost({...formPost, explanation:e.target.value})}
                         />                 
                     </div>
                 </div>
