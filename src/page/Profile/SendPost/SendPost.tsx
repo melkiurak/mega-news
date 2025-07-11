@@ -24,6 +24,13 @@ export const SendPost = () => {
     ];
     const maxTags = 5
     const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
+    
+    const AddTag = () => {
+        if(tagValue.trim() !== "" && tags.length < maxTags ){
+            handleAddTag(tagValue);
+            setTagValue("");
+        }
+    }
 
     const handleTagChange = (e:ChangeEvent<HTMLInputElement>) => {
         setTagValue(e.target.value);
@@ -31,10 +38,7 @@ export const SendPost = () => {
     const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>)  => {
         if(e.key === 'Enter'){
             e.preventDefault();
-            if(tagValue.trim() !== "" && tags.length < maxTags ){
-                handleAddTag(tagValue);
-                setTagValue("");
-            }
+            AddTag();
         };
     };
     return <div>
@@ -51,21 +55,21 @@ export const SendPost = () => {
                         <label htmlFor=""  className="text-h5">Add Tags</label>
                         <div className="h-12 relative">
                             <input type="text" 
-                                className={`h-full ${ tags.length > 0 ? 'pl-9' : 'pl-5'}`} 
+                                className="h-full p-4" 
                                 value={tagValue}
                                 onKeyDown={handleKeyPress} 
                                 onChange={handleTagChange} />
-                            <div className="flex flex-wrap gap-2 pt-3">
-                                {tags.map((tag, index) => (
-                                    <div className="rounded-xl px-3 py-1 bg-white border-2 border-[#E6E6E6] text-[#3E3232] flex items-center gap-2">
-                                        <span key={index} className=" text-btn">{tag}</span>
-                                        <button onClick={() => handleRemoveTag(tag)} type="button">
-                                            <IoIosClose className="text-2xl"/>
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-                            <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2"><FaPlus className="text-2xl"/></button>
+                            <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2" onClick={AddTag}><FaPlus className="text-2xl"/></button>
+                        </div>
+                        <div className={`flex-wrap gap-2 pt-3 ${tags.length == 0 ? 'hidden' : 'flex'}`}>
+                            {tags.map((tag, index) => (
+                                <div className="rounded-xl px-3 py-1 bg-white border-2 border-[#E6E6E6] text-[#3E3232] flex items-center gap-2">
+                                    <span key={index} className=" text-btn">{tag}</span>
+                                    <button onClick={() => handleRemoveTag(tag)} type="button">
+                                        <IoIosClose className="text-2xl"/>
+                                    </button>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
