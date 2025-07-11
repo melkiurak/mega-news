@@ -1,10 +1,12 @@
 import { BsCardImage } from "react-icons/bs";
-import { IoMdColorFilter, IoMdPaperPlane } from "react-icons/io";
+import { IoMdColorFilter, IoMdPaperPlane, IoIosClose } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
-import React, { useState, type ChangeEvent } from "react";
+import React, {  useState, type ChangeEvent } from "react";
 import type { CreatePost } from "../../../types";
 import useTags from "../../../Hooks/useTags";
+
+
 export const SendPost = () => {
     const [formPost, setFormPost] = useState<CreatePost>({
         title: '',
@@ -29,13 +31,12 @@ export const SendPost = () => {
     const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>)  => {
         if(e.key === 'Enter'){
             e.preventDefault();
-
             if(tagValue.trim() !== "" && tags.length < maxTags ){
                 handleAddTag(tagValue);
                 setTagValue("");
             }
         };
-    }
+    };
     return <div>
         <form className="flex flex-col lg:flex-row gap-5">
             <div className="flex flex-col gap-6 flex-1">
@@ -49,14 +50,19 @@ export const SendPost = () => {
                     <div className="flex flex-col gap-[15px] flex-1">
                         <label htmlFor=""  className="text-h5">Add Tags</label>
                         <div className="h-12 relative">
-                            <input  type="text" 
-                                className="h-full pl-4" 
+                            <input type="text" 
+                                className={`h-full ${ tags.length > 0 ? 'pl-9' : 'pl-5'}`} 
                                 value={tagValue}
                                 onKeyDown={handleKeyPress} 
                                 onChange={handleTagChange} />
-                            <div>
+                            <div className="flex flex-wrap gap-2 pt-3">
                                 {tags.map((tag, index) => (
-                                    <span key={index}>{tag}</span>
+                                    <div className="rounded-xl px-3 py-1 bg-white border-2 border-[#E6E6E6] text-[#3E3232] flex items-center gap-2">
+                                        <span key={index} className=" text-btn">{tag}</span>
+                                        <button onClick={() => handleRemoveTag(tag)} type="button">
+                                            <IoIosClose className="text-2xl"/>
+                                        </button>
+                                    </div>
                                 ))}
                             </div>
                             <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2"><FaPlus className="text-2xl"/></button>
