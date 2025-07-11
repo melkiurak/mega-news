@@ -20,7 +20,12 @@ export interface Explanation {
 
 export interface CreatePost {
   title: string;
-  tags: string[];
+  tags: Tags[];
   imagePost: File | null;
   explanation: string;
+}
+
+export interface Tags {
+  name: string;
+  image: File | null;
 }

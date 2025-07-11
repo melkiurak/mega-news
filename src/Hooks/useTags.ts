@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-const useTags = () => {
+const useTags = (maxtTags = 5) => {
   const [tags, setTags] = useState<string[]>([]);
-
   const handleAddTag = (newTag: string) => {
-    if (newTag && !tags.includes(newTag) && newTag.length < 5) {
+    if (newTag && !tags.includes(newTag) && tags.length < maxtTags) {
       setTags([...tags, newTag]);
     }
   };
