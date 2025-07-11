@@ -27,10 +27,11 @@ export const SendPost = () => {
     const maxTags = 5
     const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
     
-    const AddTag = () => {
+    const AddTag = (tag?:string) => {
         if(tagValue.trim() !== "" && tags.length < maxTags ){
-            handleAddTag(tagValue);
+            handleAddTag(tag ?? tagValue);
             setTagValue("");
+            setShowClueTag(false);
         }
     }
     const handleTagChange = (e:ChangeEvent<HTMLInputElement>) => {
@@ -62,16 +63,18 @@ export const SendPost = () => {
                                 value={tagValue}
                                 onKeyDown={handleKeyPress} 
                                 onChange={handleTagChange} />
-                                {showClueTag && suggestionsTags.length > 0  && (
-                                    <div>
-                                        <ul>{suggestionsTags.map((suggest, index) => (
-                                            <li key={index} onClick={AddTag}>{suggest}</li>
+                                <div className="mt-2.5">
+                                    {showClueTag && suggestionsTags.length > 0  && (
+                                        <ul className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] p-3 flex flex-col gap-2 ">{suggestionsTags.map((suggest, index) => (
+                                            <li key={index} onClick={() => {
+                                                AddTag(suggest);
+                                            }}>{suggest}</li>
                                         ))}</ul>
-                                    </div>
-                                )}
-                            <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2" onClick={AddTag}><FaPlus className="text-2xl"/></button>
+                                    )}
+                                </div>
+                            <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2" onClick={() => AddTag()}><FaPlus className="text-2xl"/></button>
                         </div>
-                        <div className={`flex-wrap gap-2 pt-3 ${tags.length == 0 ? 'hidden' : 'flex'}`}>
+                        <div className={`flex-wrap gap-2 ${tags.length == 0 ? 'hidden' : 'flex'}`}>
                             {tags.map((tag, index) => (
                                 <div className="rounded-xl px-3 py-1 bg-white border-2 border-[#E6E6E6] text-[#3E3232] flex items-center gap-2">
                                     <span key={index} className=" text-btn">{tag}</span>

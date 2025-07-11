@@ -27,5 +27,5 @@ export interface CreatePost {
 
 export interface Tags {
   name: string;
-  image: File | null;
+  image: string | null;
 }
