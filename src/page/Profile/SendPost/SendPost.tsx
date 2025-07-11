@@ -5,6 +5,7 @@ import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-ic
 import React, {  useState, type ChangeEvent } from "react";
 import type { CreatePost } from "../../../types";
 import useTags from "../../../Hooks/useTags";
+import { availableTags } from "../../../constants/tags";
 
 
 export const SendPost = () => {
@@ -15,6 +16,7 @@ export const SendPost = () => {
         explanation: '',
     });
     const [tagValue, setTagValue] = useState<string>("");
+    const [showClueTag, setShowClueTag] = useState(false);
     const postTools = [
         {name: 'Image', icon:BsCardImage},
         {name: 'Color', icon:IoMdColorFilter},
@@ -31,9 +33,9 @@ export const SendPost = () => {
             setTagValue("");
         }
     }
-
     const handleTagChange = (e:ChangeEvent<HTMLInputElement>) => {
         setTagValue(e.target.value);
+        setShowClueTag(e.target.value.length > 0);
     };
     const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>)  => {
         if(e.key === 'Enter'){
@@ -41,6 +43,7 @@ export const SendPost = () => {
             AddTag();
         };
     };
+    const suggestionsTags = availableTags.filter(tag => tag.toLowerCase().includes(tagValue.toLowerCase()) && !tags.includes(tag)).slice(0, 5);
     return <div>
         <form className="flex flex-col lg:flex-row gap-5">
             <div className="flex flex-col gap-6 flex-1">
@@ -59,6 +62,13 @@ export const SendPost = () => {
                                 value={tagValue}
                                 onKeyDown={handleKeyPress} 
                                 onChange={handleTagChange} />
+                                {showClueTag && suggestionsTags.length > 0  && (
+                                    <div>
+                                        <ul>{suggestionsTags.map((suggest, index) => (
+                                            <li key={index} onClick={AddTag}>{suggest}</li>
+                                        ))}</ul>
+                                    </div>
+                                )}
                             <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2" onClick={AddTag}><FaPlus className="text-2xl"/></button>
                         </div>
                         <div className={`flex-wrap gap-2 pt-3 ${tags.length == 0 ? 'hidden' : 'flex'}`}>
