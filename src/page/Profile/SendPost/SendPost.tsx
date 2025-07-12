@@ -2,7 +2,7 @@ import { BsCardImage } from "react-icons/bs";
 import { IoMdColorFilter, IoMdPaperPlane, IoIosClose } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
-import React, {  useState, type ChangeEvent } from "react";
+import React, {  useEffect, useRef, useState, type ChangeEvent } from "react";
 import type { CreatePost } from "../../../types";
 import useTags from "../../../Hooks/useTags";
 import { availableTags } from "../../../constants/tags";
@@ -24,10 +24,12 @@ export const SendPost = () => {
         explanation: '',
     });
     const [tagValue, setTagValue] = useState<string>("");
+    const [imageValue, setImageValue] = useState<string | null>(null);
     const [showClueTag, setShowClueTag] = useState(false);
     const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
     const [errorValue, setErrorValue] = useState(false);
 
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const AddTag = (tag?:string) => {
         const finalyTag = (tag ?? tagValue).trim() 
@@ -51,6 +53,13 @@ export const SendPost = () => {
             AddTag();
         };
     };
+    const handleImageChange = (e:ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if(file){
+            setFormPost(prev => ({...prev, imagePost: file}));
+            setImageValue(URL.createObjectURL(file));
+        }
+    }
     const suggestionsTags = availableTags.filter(tag => tag.toLowerCase().includes(tagValue.toLowerCase()) && !tags.includes(tag)).slice(0, 5);
     return <div>
         <form className="flex flex-col lg:flex-row gap-5">
@@ -123,13 +132,17 @@ export const SendPost = () => {
                         <div className="flex flex-col items-center gap-8 justify-center border-2 border-dashed border-[#E1E1E1] rounded-xl h-[360px] md:h-[394px]">
                             <BsCardImage className="w-[120px] h-[96px] text-[#3E323240] "/>
                             <p className="text-Input text-[#3E3232BF]">Drop image here, paste or</p>
-                            <button className="flex items-center justify-center py-1 px-4 gap-2 text-[#3E323280] border-2 border-[#E6E6E6] rounded-xl">
+                            <button className="flex items-center justify-center py-1 px-4 gap-2 text-[#3E323280] border-2 border-[#E6E6E6] rounded-xl" onClick={() => fileInputRef.current?.click()}>
                                 <FaPlus/>
                                 <span className="text-btn">Select</span>
                             </button>
+                            <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageChange} />
                         </div>
                     </div>
                 </div>
+                            {imageValue && (
+                                <img src={imageValue} alt="" className="h-5 w-5" />
+                            )}
                 <div className="flex justify-end">
                     <div className="flex justify-between gap-3 max-w-[280px] md:max-w-[360px] w-full">
                         <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
