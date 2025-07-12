@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { Tags } from "../../types";
 import { dataTags } from "../../server/getData";
 
@@ -18,3 +18,15 @@ const initialState: TagsState = {
   loading: false,
   error: null,
 };
+
+export const tagsSlice = createSlice({
+  name: "tags",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchTags.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+  },
+});

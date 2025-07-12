@@ -7,6 +7,14 @@ import type { CreatePost } from "../../../types";
 import useTags from "../../../Hooks/useTags";
 import { availableTags } from "../../../constants/tags";
 
+const postTools = [
+    {name: 'Image', icon:BsCardImage},
+    {name: 'Color', icon:IoMdColorFilter},
+    {name: 'Text', icon: FaCode},
+    {name: 'Align', icon: FaAlignLeft},
+    {name: 'Link', icon: FaLink},
+];
+const maxTags = 5
 
 export const SendPost = () => {
     const [formPost, setFormPost] = useState<CreatePost>({
@@ -17,26 +25,25 @@ export const SendPost = () => {
     });
     const [tagValue, setTagValue] = useState<string>("");
     const [showClueTag, setShowClueTag] = useState(false);
-    const postTools = [
-        {name: 'Image', icon:BsCardImage},
-        {name: 'Color', icon:IoMdColorFilter},
-        {name: 'Text', icon: FaCode},
-        {name: 'Align', icon: FaAlignLeft},
-        {name: 'Link', icon: FaLink},
-    ];
-    const maxTags = 5
     const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
-    
+    const [errorValue, setErrorValue] = useState(false);
+
+
     const AddTag = (tag?:string) => {
-        if(tagValue.trim() !== "" && tags.length < maxTags ){
-            handleAddTag(tag ?? tagValue);
+        const finalyTag = (tag ?? tagValue).trim() 
+        if(tagValue.trim() !== "" && tags.length < maxTags && availableTags.includes(finalyTag) ){
+            handleAddTag(finalyTag);
             setTagValue("");
             setShowClueTag(false);
+            setErrorValue(false);
+        } else{
+            setErrorValue(true);
         }
     }
     const handleTagChange = (e:ChangeEvent<HTMLInputElement>) => {
         setTagValue(e.target.value);
         setShowClueTag(e.target.value.length > 0);
+        setErrorValue(false);
     };
     const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>)  => {
         if(e.key === 'Enter'){
@@ -59,7 +66,7 @@ export const SendPost = () => {
                         <label htmlFor=""  className="text-h5">Add Tags</label>
                         <div className="h-12 relative">
                             <input type="text" 
-                                className="h-full p-4" 
+                                className={`h-full p-4 ${errorValue ? 'border-2 border-red-500' : 'border-none'}`} 
                                 value={tagValue}
                                 onKeyDown={handleKeyPress} 
                                 onChange={handleTagChange} />
@@ -72,6 +79,7 @@ export const SendPost = () => {
                                         ))}</ul>
                                     )}
                                 </div>
+                                <span className={`text-red-500 text-input ${errorValue ? 'block' : 'hidden'}`}>Такого тегу немає</span>
                             <button type="button" className="bg-[#0000000C] text-[#3E3232] p-2 rounded-xl absolute right-1 top-1/2 -translate-y-1/2" onClick={() => AddTag()}><FaPlus className="text-2xl"/></button>
                         </div>
                         <div className={`flex-wrap gap-2 ${tags.length == 0 ? 'hidden' : 'flex'}`}>
