@@ -9,7 +9,9 @@ export default defineConfig({
     alias: {
       "@components": path.resolve(__dirname, "src/components"),
       "@page": path.resolve(__dirname, "src/page"),
+      "@lib": path.resolve(__dirname, "src/lib"),
       "@icons": path.resolve(__dirname, "src/assets/icons"),
+      "@reducer": path.resolve(__dirname, "src/redux/reducers"),
       "@img": path.resolve(__dirname, "src/assets/img"),
       events: "events",
     },

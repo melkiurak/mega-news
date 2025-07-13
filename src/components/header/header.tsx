@@ -95,7 +95,7 @@ export const Header = () => {
                                 <button type="button" onClick={() => setUserManu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
                             </div>   
                         ) : (
-                            <NavLink to='/login' end>
+                            <NavLink to='/Auth' end>
                                 Login
                             </NavLink>
                         )}
