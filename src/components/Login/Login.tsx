@@ -7,7 +7,7 @@ interface LoginProps {
 
 export const Login = ({setRegistrationShow}: LoginProps) => {
     return <div className="flex flex-col text-center gap-5 border-[#E6E6E6] border-2 px-7 py-10 rounded-2xl w-full">
-         <h1>login</h1>
+        <h1>login</h1>
         <form className="flex flex-col text-start gap-5">
                 <label className="flex flex-col gap-2">
                     <span>Enter the name</span>

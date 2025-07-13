@@ -13,6 +13,7 @@ export default defineConfig({
       "@icons": path.resolve(__dirname, "src/assets/icons"),
       "@reducer": path.resolve(__dirname, "src/redux/reducers"),
       "@img": path.resolve(__dirname, "src/assets/img"),
+      "@styles": path.resolve(__dirname, "src/styles"),
       events: "events",
     },
   },
