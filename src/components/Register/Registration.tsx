@@ -7,10 +7,9 @@ import { logIn, setUser } from "../../redux/reducers/users-reducer";
 
 interface RegisterProps {
     Parse: any,
-    validateUser: any,
 }
 
-export const Registration = ({Parse, validateUser}: RegisterProps) => {
+export const Registration = ({Parse,}: RegisterProps) => {
     const [formData, setFormData] = useState<CreateUser>({
         name: '',
         password: '',
@@ -31,7 +30,7 @@ export const Registration = ({Parse, validateUser}: RegisterProps) => {
             console.error('Error register', error)
         }
     };
-    return <div>
+    return <div className="flex flex-col text-center gap-5 border-[#E6E6E6] border-2 px-7 py-10 rounded-2xl w-full">
         <h1>Registration</h1>
          <form className="flex flex-col text-start gap-5">
             <label className="flex flex-col gap-2">
@@ -55,7 +54,7 @@ export const Registration = ({Parse, validateUser}: RegisterProps) => {
                     <RxLockClosed className="absolute top-1/2 -translate-y-1/2 right-3"/>
                 </div>
             </label>
-            <button type="submit" onClick={handleSubmit}>Login</button>
+            <button type="submit" onClick={handleSubmit}>Registration</button>
         </form>
     </div>
 }
