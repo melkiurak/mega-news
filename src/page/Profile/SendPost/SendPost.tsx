@@ -56,6 +56,7 @@ export const SendPost = () => {
     const handleImageChange = (e:ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if(file){
+            console.log("image URL", URL.createObjectURL(file));
             setFormPost(prev => ({...prev, imagePost: file}));
             setImageValue(URL.createObjectURL(file));
         }
@@ -129,20 +130,23 @@ export const SendPost = () => {
                 <div className="flex flex-col gap-[15px]">
                     <label htmlFor="">Add Image</label>
                     <div className="bg-[#F5F5F5] p-2.5 rounded-xl">
-                        <div className="flex flex-col items-center gap-8 justify-center border-2 border-dashed border-[#E1E1E1] rounded-xl h-[360px] md:h-[394px]">
-                            <BsCardImage className="w-[120px] h-[96px] text-[#3E323240] "/>
-                            <p className="text-Input text-[#3E3232BF]">Drop image here, paste or</p>
-                            <button className="flex items-center justify-center py-1 px-4 gap-2 text-[#3E323280] border-2 border-[#E6E6E6] rounded-xl" onClick={() => fileInputRef.current?.click()}>
-                                <FaPlus/>
-                                <span className="text-btn">Select</span>
-                            </button>
-                            <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageChange} />
+                        <div className={` border-dashed border-[#E1E1E1] ${imageValue ? 'border-none' : 'border-2'} rounded-xl h-[360px] md:h-[394px]`}>
+                            {imageValue ? (
+                                <div className="w-full h-full bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${imageValue})` }}></div>
+                            ) : (
+                                <div className="flex flex-col items-center gap-8 justify-center h-full">
+                                    <BsCardImage className="w-[120px] h-[96px] text-[#3E323240] "/>
+                                    <p className="text-Input text-[#3E3232BF]">Drop image here, paste or</p>
+                                    <button type="button" className="flex items-center justify-center py-1 px-4 gap-2 text-[#3E323280] border-2 border-[#E6E6E6] rounded-xl" onClick={() => fileInputRef.current?.click()}>
+                                        <FaPlus/>
+                                        <span className="text-btn">Select</span>
+                                    </button>
+                                    <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageChange} />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
-                            {imageValue && (
-                                <img src={imageValue} alt="" className="h-5 w-5" />
-                            )}
                 <div className="flex justify-end">
                     <div className="flex justify-between gap-3 max-w-[280px] md:max-w-[360px] w-full">
                         <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">
