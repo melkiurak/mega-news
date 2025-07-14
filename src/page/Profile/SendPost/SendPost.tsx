@@ -1,12 +1,12 @@
+import React, { useRef, useState, type ChangeEvent } from "react";
 import { BsCardImage } from "react-icons/bs";
 import { IoMdColorFilter, IoMdPaperPlane, IoIosClose } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
-import React, {  useEffect, useRef, useState, type ChangeEvent } from "react";
 import type { CreatePost } from "../../../types";
 import useTags from "../../../Hooks/useTags";
 import { availableTags } from "../../../constants/tags";
-
+import {Pase} from '@lib/parseClient'
 const postTools = [
     {name: 'Image', icon:BsCardImage},
     {name: 'Color', icon:IoMdColorFilter},
@@ -35,13 +35,16 @@ export const SendPost = () => {
         const finalyTag = (tag ?? tagValue).trim() 
         if(tagValue.trim() !== "" && tags.length < maxTags && availableTags.includes(finalyTag) ){
             handleAddTag(finalyTag);
+            setFormPost(prev => ({
+                ...prev, tags:[...prev.tags, {name: finalyTag, image: null}]
+            }))
             setTagValue("");
             setShowClueTag(false);
             setErrorValue(false);
         } else{
             setErrorValue(true);
         }
-    }
+    };
     const handleTagChange = (e:ChangeEvent<HTMLInputElement>) => {
         setTagValue(e.target.value);
         setShowClueTag(e.target.value.length > 0);
@@ -60,6 +63,10 @@ export const SendPost = () => {
             setFormPost(prev => ({...prev, imagePost: file}));
             setImageValue(URL.createObjectURL(file));
         }
+    };
+    const handlePublickPost = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log(formPost)
     }
     const suggestionsTags = availableTags.filter(tag => tag.toLowerCase().includes(tagValue.toLowerCase()) && !tags.includes(tag)).slice(0, 5);
     return <div>
@@ -157,7 +164,7 @@ export const SendPost = () => {
                             <FaRegEye/>
                             <span className="text-btn">Preview</span>
                         </button>
-                        <button type="submit" className="flex-1 bg-[#F81539BF] rounded-xl flex items-center justify-center py-2 gap-2 text-white">
+                        <button type="submit" onClick={handlePublickPost} className="flex-1 bg-[#F81539BF] rounded-xl flex items-center justify-center py-2 gap-2 text-white">
                             <IoMdPaperPlane/>
                             <span className="text-btn">Public</span>
                         </button>
