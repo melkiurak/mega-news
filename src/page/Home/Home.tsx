@@ -1,8 +1,7 @@
-import { BreadCrumb } from "../../components/breadcrumb/breadCrumb"
+import {TagsView} from '@components/TagsView/TagsView'
 
 export  const Home = () => {
     return <div>
-        <BreadCrumb/>
-        <h1>I am home</h1>
+        <TagsView/>
     </div>
 }

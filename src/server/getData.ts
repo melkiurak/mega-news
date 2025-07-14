@@ -6,7 +6,7 @@ export const dataTags = async () => {
     const result = await query.find();
     return result.map((tag) => ({
       name: tag.get("name"),
-      image: tag.get("image") || null,
+      image: tag.get("Image") || null,
     }));
   } catch (error) {
     console.error("Ошибка при получении данных", error);
