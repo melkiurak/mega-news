@@ -6,7 +6,7 @@ import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-ic
 import type { CreatePost } from "../../../types";
 import useTags from "../../../Hooks/useTags";
 import { availableTags } from "../../../constants/tags";
-import {Pase} from '@lib/parseClient'
+import Parse from "@lib/parseClient";
 const postTools = [
     {name: 'Image', icon:BsCardImage},
     {name: 'Color', icon:IoMdColorFilter},
@@ -64,8 +64,23 @@ export const SendPost = () => {
             setImageValue(URL.createObjectURL(file));
         }
     };
-    const handlePublickPost = (e: React.FormEvent) => {
+    const handlePublickPost = async(e: React.FormEvent) => {
         e.preventDefault();
+        
+        const Post = Parse.Object.extend("Posts");
+        const post = new Post();
+        const parseFile  = new Parse.File(formPost.imagePost?.name, formPost.imagePost)
+
+        post.set('title', formPost.title )
+        post.set('explanation', formPost.explanation )
+        post.set('imagePost', parseFile )
+        post.set('tags', formPost.tags )
+        try{
+            const result = await post.save();
+            console.log("Пост сохранён, id:", result.id);
+        } catch(error){
+            console.error("Error",  error)
+        }
         console.log(formPost)
     }
     const suggestionsTags = availableTags.filter(tag => tag.toLowerCase().includes(tagValue.toLowerCase()) && !tags.includes(tag)).slice(0, 5);
