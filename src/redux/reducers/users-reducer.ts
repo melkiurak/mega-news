@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { User } from "../../types";
 
 interface UserState {
   isLogin: boolean;
-  username: string | null;
-  avatar: string | null;
+  user: User | null;
 }
 
 const initialState: UserState = {
   isLogin: false,
-  username: null,
-  avatar: null,
+  user: null,
 };
 
 export const userSlice = createSlice({
@@ -21,10 +20,10 @@ export const userSlice = createSlice({
     },
     logOut(state) {
       state.isLogin = false;
+      state.user = null;
     },
     setUser(state, action) {
-      state.username = action.payload.username;
-      state.avatar = action.payload.avatar;
+      state.user = action.payload;
     },
   },
 });

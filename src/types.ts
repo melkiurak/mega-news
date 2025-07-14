@@ -6,9 +6,15 @@ export interface Post {
   name: string;
 }
 export interface CreateUser {
-  name: string;
+  username: string;
   password: string;
   avatar: File | null;
+}
+export interface User {
+  isLogin: boolean;
+  id: string | null;
+  username: string | null;
+  avatar?: string | null;
 }
 export interface Explanation {
   image: File | null;
@@ -19,6 +25,7 @@ export interface Explanation {
 }
 
 export interface CreatePost {
+  user: User[];
   title: string;
   tags: Tags[];
   imagePost: File | null;

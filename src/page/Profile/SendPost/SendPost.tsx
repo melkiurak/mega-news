@@ -7,6 +7,8 @@ import type { CreatePost } from "../../../types";
 import useTags from "../../../Hooks/useTags";
 import { availableTags } from "../../../constants/tags";
 import Parse from "@lib/parseClient";
+import { useSelector } from "react-redux";
+import type { storeType } from "../../../redux/store";
 const postTools = [
     {name: 'Image', icon:BsCardImage},
     {name: 'Color', icon:IoMdColorFilter},
@@ -18,6 +20,7 @@ const maxTags = 5
 
 export const SendPost = () => {
     const [formPost, setFormPost] = useState<CreatePost>({
+        user: [],
         title: '',
         tags: [],
         imagePost: null,
@@ -30,6 +33,8 @@ export const SendPost = () => {
     const [errorValue, setErrorValue] = useState(false);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const { user } = useSelector((state:storeType) => state.user);
 
     const AddTag = (tag?:string) => {
         const finalyTag = (tag ?? tagValue).trim() 
@@ -66,15 +71,16 @@ export const SendPost = () => {
     };
     const handlePublickPost = async(e: React.FormEvent) => {
         e.preventDefault();
-        
+
         const Post = Parse.Object.extend("Posts");
         const post = new Post();
         const parseFile  = new Parse.File(formPost.imagePost?.name, formPost.imagePost)
-
         post.set('title', formPost.title )
         post.set('explanation', formPost.explanation )
         post.set('imagePost', parseFile )
         post.set('tags', formPost.tags )
+        post.set('user', user);
+
         try{
             const result = await post.save();
             console.log("Пост сохранён, id:", result.id);

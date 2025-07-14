@@ -20,7 +20,7 @@ export const Header = () => {
     const [burger, setBurger] = useState(false);
     const [userMenu, setUserManu] = useState(false);
     const dispacth = useDispatch();
-    const { isLogin, username, avatar } = useSelector((state:storeType) => state.user);
+    const { isLogin, user } = useSelector((state:storeType) => state.user);
 
     const handelExit = async () => {
         await Parse.User.logOut();
@@ -84,14 +84,14 @@ export const Header = () => {
                     <div className="w-full">
                         {isLogin ? (
                             <div className="flex items-center gap-2">
-                                {avatar ? (
+                                {user?.avatar ? (
                                     <div>аватарка есть</div>
                                 ) : (
                                     <div className="bg-[#F5F5F5] rounded-xl w-12 h-12 flex items-center justify-center">
-                                        <h5 className="text-h5 text-black">{username?.charAt(0).toLocaleUpperCase()}</h5>
+                                        <h5 className="text-h5 text-black">{user?.username?.charAt(0).toLocaleUpperCase()}</h5>
                                     </div>
                                 )}
-                                <h5 className="text-h5 max-w-[54px] truncate">{username}</h5>
+                                <h5 className="text-h5 max-w-[54px] truncate">{user?.username}</h5>
                                 <button type="button" onClick={() => setUserManu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
                             </div>   
                         ) : (
