@@ -4,6 +4,7 @@ export interface Post {
   imgPost: string;
   description: string;
   name: string;
+  date: string;
 }
 export interface CreateUser {
   username: string;
