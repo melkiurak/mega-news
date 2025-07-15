@@ -74,12 +74,15 @@ export const SendPost = () => {
 
         const Post = Parse.Object.extend("Posts");
         const post = new Post();
-        const parseFile  = new Parse.File(formPost.imagePost?.name, formPost.imagePost)
-        post.set('title', formPost.title )
-        post.set('explanation', formPost.explanation )
-        post.set('imagePost', parseFile )
-        post.set('tags', formPost.tags )
+        const parseFile  = new Parse.File(formPost.imagePost?.name, formPost.imagePost);
+        const date = new Date();
+
+        post.set('title', formPost.title );
+        post.set('explanation', formPost.explanation );
+        post.set('imagePost', parseFile );
+        post.set('tags', formPost.tags );
         post.set('user', user);
+        post.set('date', date);
 
         try{
             const result = await post.save();

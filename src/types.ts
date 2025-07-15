@@ -27,6 +27,7 @@ export interface Explanation {
 
 export interface CreatePost {
   user: User[];
+  date: string;
   title: string;
   tags: Tags[];
   imagePost: File | null;

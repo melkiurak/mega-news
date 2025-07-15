@@ -4,7 +4,6 @@ import imgPost from '@img/Posts/05.png'
 
 export const PopularPost = () => {
     const postPopular = {
-        
         title: 'Popular Posts',
         titlePosts: 'My first day',
         imgPost: imgPost,
