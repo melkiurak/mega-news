@@ -39,7 +39,7 @@ input {
   @apply font-roboto text-[13px] font-medium text-[#3E3232BF];
 }
 .container {
-  @apply max-w-[1527px] w-full   phone:px-container px-[16px] m-auto;
+  @apply max-w-[1512px] w-full 2xl:p-0 phone:px-container px-[16px] m-auto;
 }
 
 .inputText {
