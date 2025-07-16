@@ -1,4 +1,5 @@
 import { usePost } from "../../../Hooks/usePost"
+import { ButtonShowAll } from "../../buttonShowAll/buttonShowAll";
 import { PostSlider } from "../../PostSlider/PostSlider"
 
 
@@ -15,6 +16,6 @@ export const NewPost = () => {
         return postDate >= weekendDate && postDate <= nowDate;
     });
     return <div>
-        <PostSlider posts={newPost} titleBlock={titleBlock} postCardStyle="grid grid-cols-2" postItemStyle="flex" />
+        <PostSlider posts={newPost} titleBlock={titleBlock} postCardStyle="grid grid-cols-2" postItemStyle="flex" rightControl={<ButtonShowAll/>} />
     </div>
 }
