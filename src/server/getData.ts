@@ -24,9 +24,10 @@ export const dataPosts = async () => {
 
     return result.map((post) => {
       const user = post.get("user");
+      const imagePost = post.get("imagePost");
       return {
         title: post.get("title"),
-        imgPost: post.get("imgPost"),
+        imagePost: imagePost ? imagePost.url() : "",
         explanation: post.get("explanation"),
         user: user,
         date: post.get("date"),

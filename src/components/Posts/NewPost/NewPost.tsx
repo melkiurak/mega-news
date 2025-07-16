@@ -15,6 +15,6 @@ export const NewPost = () => {
         return postDate >= weekendDate && postDate <= nowDate;
     });
     return <div>
-        <PostSlider posts={newPost} titleBlock={titleBlock}/>
+        <PostSlider posts={newPost} titleBlock={titleBlock} postCardStyle="grid grid-cols-2" postItemStyle="flex" />
     </div>
 }

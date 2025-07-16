@@ -20,7 +20,7 @@ export interface CreatePost {
 }
 export interface Post {
   title: string;
-  imgPost: string;
+  imagePost: string;
   explanation: string;
   user: User;
   date: string;
