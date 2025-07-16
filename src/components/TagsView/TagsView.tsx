@@ -28,7 +28,7 @@ export const TagsView = () => {
                     <p className="text-h5 text-white absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">#{tag.name}</p>
                 </div>
             ))}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 rounded-xl h-full max-w-[144px] w-full bg-transparent z-10" style={{boxShadow: 'inset -122px 0px 46px -28px  rgba(245, 245, 245, 1)',}}></div>
+            <div className=" absolute right-0 top-1/2 -translate-y-1/2 rounded-xl h-full max-w-[144px] w-full bg-transparent z-10" style={{boxShadow: 'inset -122px 0px 46px -28px  rgba(245, 245, 245, 1)',}}></div>
             <ButtonSwitch prev={handlePrevBtn} next={handleNexthBtn}  />
         </div>
     </div>
