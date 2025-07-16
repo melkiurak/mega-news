@@ -1,10 +1,10 @@
 export interface Post {
   title: string;
-  titlePosts: string;
   imgPost: string;
   description: string;
-  name: string;
+  user: User[];
   date: string;
+  favoriteCount: number;
 }
 export interface CreateUser {
   username: string;
@@ -32,6 +32,7 @@ export interface CreatePost {
   tags: Tags[];
   imagePost: File | null;
   explanation: string;
+  favoriteCount: number;
 }
 
 export interface Tags {

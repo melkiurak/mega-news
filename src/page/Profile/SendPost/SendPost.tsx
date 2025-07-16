@@ -20,11 +20,13 @@ const maxTags = 5
 
 export const SendPost = () => {
     const [formPost, setFormPost] = useState<CreatePost>({
+        date: '',
         user: [],
         title: '',
         tags: [],
         imagePost: null,
         explanation: '',
+        favoriteCount: 0,
     });
     const [tagValue, setTagValue] = useState<string>("");
     const [imageValue, setImageValue] = useState<string | null>(null);
@@ -83,7 +85,7 @@ export const SendPost = () => {
         post.set('tags', formPost.tags );
         post.set('user', user);
         post.set('date', date);
-
+        post.set('favoriteCount', formPost.favoriteCount)
         try{
             const result = await post.save();
             console.log("Пост сохранён, id:", result.id);

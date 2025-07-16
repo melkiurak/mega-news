@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router-dom";
 
 import type { storeType } from "../../redux/store";
 import  Parse  from '../../lib/parseClient';
@@ -31,7 +31,7 @@ export const Header = () => {
             {burger && (
                 <div className="fixed top-0 left-0 bg-white w-full h-full z-10 px-5 py-[15px] flex flex-col gap-5">
                     <div className="flex justify-between items-center">
-                        <h4 className="font-roboto font-bold text-[22px] text-[#FC4308]">Mega.news</h4>
+                        <h4 className="font-roboto font-bold text-[22px] text-[#FC4308]"><Link to="/">Mega.news</Link></h4>
                         <button className="w-12 h-12" onClick={() => setBurger(false)}><IoCloseSharp className="w-full h-full" /></button>
                     </div>
                     <div>
@@ -61,7 +61,7 @@ export const Header = () => {
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% - 5px)" }}></span>
                     <span className=' w-5 h-[2px] absolute top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#3E3232] transition-all duration-500 rounded-2xl' style={{ top: "calc(50% + 5px)" }}></span>
                 </button>
-                <h4 className="font-roboto font-bold text-[22px] text-[#FC4308] hidden phone:block">Mega.news</h4>
+                <h4 className="font-roboto font-bold text-[22px] text-[#FC4308] hidden phone:block cursor-pointer "><Link to="/">Mega.news</Link></h4>
                 <nav className="xl:block hidden">
                     <ul className="flex items-center gap-[34px]">
                         <li >
