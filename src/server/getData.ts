@@ -23,7 +23,7 @@ export const dataPosts = async () => {
     return result.map((post) => ({
       title: post.get("title"),
       imgPost: post.get("imgPost"),
-      description: post.get("description"),
+      explanation: post.get("explanation"),
       user: post.get("User"),
       date: post.get("date"),
       favoriteCount: post.get("favoriteCount"),

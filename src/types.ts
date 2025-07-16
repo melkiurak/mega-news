@@ -1,8 +1,8 @@
 export interface Post {
   title: string;
   imgPost: string;
-  description: string;
-  user: User[];
+  explanation: string;
+  user: User;
   date: string;
   favoriteCount: number;
 }
@@ -26,7 +26,7 @@ export interface Explanation {
 }
 
 export interface CreatePost {
-  user: User[];
+  user: User;
   date: string;
   title: string;
   tags: Tags[];

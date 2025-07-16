@@ -3,12 +3,14 @@ import type { Post } from "../types";
 import { dataPosts } from "../server/getData";
 
 export const usePost = () => {
-  const [post, setPost] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
+
   useEffect(() => {
     const fetchPost = async () => {
       const resultPost = await dataPosts();
-      setPost(resultPost);
+      setPosts(resultPost);
     };
     fetchPost();
   }, []);
+  return { posts };
 };
