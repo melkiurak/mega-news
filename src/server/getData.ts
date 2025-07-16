@@ -19,15 +19,20 @@ export const dataPosts = async () => {
   try {
     const postsObject = Parse.Object.extend("Posts");
     const query = new Parse.Query(postsObject);
+    query.include("user");
     const result = await query.find();
-    return result.map((post) => ({
-      title: post.get("title"),
-      imgPost: post.get("imgPost"),
-      explanation: post.get("explanation"),
-      user: post.get("User"),
-      date: post.get("date"),
-      favoriteCount: post.get("favoriteCount"),
-    }));
+
+    return result.map((post) => {
+      const user = post.get("user");
+      return {
+        title: post.get("title"),
+        imgPost: post.get("imgPost"),
+        explanation: post.get("explanation"),
+        user: user,
+        date: post.get("date"),
+        favoriteCount: post.get("favoriteCount"),
+      };
+    });
   } catch (error) {
     console.error("Ошибка при получении данных", error);
     throw error;

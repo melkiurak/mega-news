@@ -1,11 +1,3 @@
-export interface Post {
-  title: string;
-  imgPost: string;
-  explanation: string;
-  user: User;
-  date: string;
-  favoriteCount: number;
-}
 export interface CreateUser {
   username: string;
   password: string;
@@ -14,17 +6,9 @@ export interface CreateUser {
 export interface User {
   isLogin: boolean;
   id: string | null;
-  username: string | null;
+  username: string;
   avatar?: string | null;
 }
-export interface Explanation {
-  image: File | null;
-  link: string;
-  text: string;
-  align: string;
-  color: string;
-}
-
 export interface CreatePost {
   user: User;
   date: string;
@@ -34,7 +18,21 @@ export interface CreatePost {
   explanation: string;
   favoriteCount: number;
 }
-
+export interface Post {
+  title: string;
+  imgPost: string;
+  explanation: string;
+  user: User;
+  date: string;
+  favoriteCount: number;
+}
+export interface Explanation {
+  image: File | null;
+  link: string;
+  text: string;
+  align: string;
+  color: string;
+}
 export interface Tags {
   name: string;
   image: string | null;
