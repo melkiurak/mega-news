@@ -8,11 +8,12 @@ interface PostSliderProps {
   titleBlock: string,
   postCardStyle:string,
   postItemStyle:string,
+  postImageStyle: string,
   rightControl: React.ReactNode
 }
 
 
-export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle,rightControl,}:PostSliderProps) => {
+export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle,rightControl,postImageStyle}:PostSliderProps) => {
     const [slider, setSlider] = useState(0)
     const [visibleSlides, setVisibleSlides] = useState(4);
     useEffect(() => {
@@ -39,11 +40,11 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle,rig
                     {rightControl}
                 </div>
             </div>
-            <div className={`${postCardStyle} gap-6 overflow-hidden`}>
+            <div className={`${postCardStyle} lg:justify-between overflow-hidden`}>
                 {posts.slice(slider, slider + visibleSlides).map((post, index) => (
                     <div className={`${postItemStyle} gap-3  shadow-[0_0_20px_rgba(0,0,0,0.1)] rounded-xl p-2.5 h-full`} key={index}>
-                        <div className=' rounded-xl h-[190px] bg-center bg-cover bg-no-repeat w-full phone:w-[190px]' style={{backgroundImage: `url(${post?.imagePost})`}}></div>
-                        <div className='flex flex-col gap-4  flex-1/2'>
+                        <div className={`rounded-xl h-[190px] bg-center bg-cover bg-no-repeat ${postImageStyle}`} style={{backgroundImage: `url(${post?.imagePost})`}}></div>
+                        <div className='flex flex-col gap-4 phone:flex-1/2 md:flex-1/1'>
                             <h5 className='text-h5  text-[#3E3232] px-1.5'>{post.title}</h5>
                             <p className='px-1.5 paragraph text-[#3E3232]/75'>{post.explanation}</p>
                             <div className='flex  items-center bg-[#F5F5F5] rounded-xl px-3.5 py-4'>

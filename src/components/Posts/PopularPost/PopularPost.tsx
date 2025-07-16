@@ -11,8 +11,9 @@ export const PopularPost = () => {
         <PostSlider 
             posts={popularPost} 
             titleBlock={titleBlock} 
-            postCardStyle="flex overflow-x-auto no-scrollbar"
+            postCardStyle="flex overflow-x-auto no-scrollbar lg:gap-0"
             postItemStyle="flex flex-col flex-shrink-0 w-full phone:w-[370px]"
+            postImageStyle="w-full"
             rightControl={<ButtonSwitch/>}  
          />
     </div>
