@@ -26,7 +26,7 @@ export const NewPost = () => {
         <PostSlider 
             posts={newPost} 
             titleBlock={titleBlock} 
-            postCardStyle="flex phone:flex-col lg:grid lg:grid-cols-2 overflow-x-auto no-scrollbar gap-6" 
+            postCardStyle="flex phone:flex-col lg:grid lg:grid-cols-2 overflow-auto no-scrollbar gap-6" 
             postItemStyle="flex flex-col phone:flex-row w-full"
             postImageStyle="lg:w-full phone:w-[190px]" 
             rightControl={isMobile ? <ButtonSwitch/> :  <ButtonShowAll/>} 

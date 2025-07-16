@@ -40,10 +40,10 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle,rig
                     {rightControl}
                 </div>
             </div>
-            <div className={`${postCardStyle} lg:justify-between overflow-hidden`}>
+            <div className={`${postCardStyle} lg:justify-between overflow-hidden shadow-[10px_0_20px_rgba(0,244,255,0.8),-10px_0_20px_rgba(255,0,123,0.8)] rounded-xl py-9`  }>
                 {posts.slice(slider, slider + visibleSlides).map((post, index) => (
-                    <div className={`${postItemStyle} gap-3  shadow-[0_0_20px_rgba(0,0,0,0.1)] rounded-xl p-2.5 h-full`} key={index}>
-                        <div className={`rounded-xl h-[190px] bg-center bg-cover bg-no-repeat ${postImageStyle}`} style={{backgroundImage: `url(${post?.imagePost})`}}></div>
+                    <div className={`${postItemStyle} gap-3 rounded-xl h-full p-2.5 shadow-[10px_0_20px_rgba(0,0,0,0.1),-10px_0_20px_rgba(0,0,0,0.1)] `} key={index}>
+                        <div className={`rounded-xl h-[190px] bg-center  bg-cover bg-no-repeat ${postImageStyle}`} style={{backgroundImage: `url(${post?.imagePost})`}}></div>
                         <div className='flex flex-col gap-4 phone:flex-1/2 md:flex-1/1'>
                             <h5 className='text-h5  text-[#3E3232] px-1.5'>{post.title}</h5>
                             <p className='px-1.5 paragraph text-[#3E3232]/75'>{post.explanation}</p>
