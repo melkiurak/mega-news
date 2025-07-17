@@ -1,6 +1,7 @@
-import { usePost } from "../../../Hooks/usePost";
-import { ButtonSwitch } from "../../buttonSwitch/ButtonSwitch";
-import { PostSlider } from "../../PostSlider/PostSlider"
+import { usePost } from "@hooks/usePost";
+import { postSliderStyles } from "@styles/postSlider";
+import { ButtonSwitch } from "@components/buttonSwitch/ButtonSwitch";
+import { PostSlider } from "@components/PostSlider/PostSlider"
 export const TrendyPosts = () => {
     const { posts } = usePost();
     const titleBlock = 'Trendy Post';
@@ -18,9 +19,9 @@ export const TrendyPosts = () => {
         <PostSlider 
             posts={trendyPosts} 
             titleBlock={titleBlock}
-            postCardStyle="flex overflow-x-auto no-scrollbar 2xl:gap-0 phone:gap-5"
-            postItemStyle="flex flex-col flex-shrink-0 w-full phone:w-[358px] "
-            postImageStyle="w-full"
+            postCardStyle={postSliderStyles.card}
+            postItemStyle={postSliderStyles.item}
+            postImageStyle={postSliderStyles.image}
             rightControl={<ButtonSwitch/>}
          />
     </div>

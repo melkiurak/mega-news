@@ -4,7 +4,7 @@ import { IoMdColorFilter, IoMdPaperPlane, IoIosClose } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
 import type { CreatePost } from "../../../types";
-import useTags from "../../../Hooks/useTags";
+import useTags from "../../../hooks/useTags";
 import { availableTags } from "../../../constants/tags";
 import Parse from "@lib/parseClient";
 import { useSelector } from "react-redux";

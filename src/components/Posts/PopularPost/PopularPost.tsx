@@ -1,6 +1,7 @@
-import { usePost } from "../../../Hooks/usePost"
+import { usePost } from "@hooks/usePost";
 import { ButtonSwitch } from "@components/buttonSwitch/ButtonSwitch";
-import { PostSlider } from "../../PostSlider/PostSlider"
+import { PostSlider } from "@components/PostSlider/PostSlider"
+import { postSliderStyles } from "@styles/postSlider";
 
 
 export const PopularPost = () => {
@@ -11,9 +12,9 @@ export const PopularPost = () => {
         <PostSlider 
             posts={popularPost} 
             titleBlock={titleBlock} 
-            postCardStyle="flex overflow-x-auto no-scrollbar 2xl:gap-0 phone:gap-5 h-[385px] phone:h-[400px] lg:h-[429px]"
-            postItemStyle="flex flex-col flex-shrink-0 w-full phone:w-[370px]"
-            postImageStyle="w-full"
+            postCardStyle={postSliderStyles.card}
+            postItemStyle={postSliderStyles.item}
+            postImageStyle={postSliderStyles.image}
             rightControl={<ButtonSwitch/>}  
          />
     </div>

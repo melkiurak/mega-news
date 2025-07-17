@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { usePost } from "../../../Hooks/usePost"
-import { ButtonShowAll } from "../../buttonShowAll/buttonShowAll";
-import { ButtonSwitch } from "../../buttonSwitch/ButtonSwitch";
-import { PostSlider } from "../../PostSlider/PostSlider"
+import { usePost } from "@hooks/usePost";
+import { ButtonSwitch } from "@components/buttonSwitch/ButtonSwitch";
+import { PostSlider } from "@components/PostSlider/PostSlider"
+import { ButtonShowAll } from "@components/buttonShowAll/buttonShowAll"
 
 
 export const NewPost = () => {

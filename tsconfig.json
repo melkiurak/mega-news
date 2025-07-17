@@ -6,10 +6,15 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
+     "paths": {
       "@components/*": ["src/components/*"],
+      "@page/*": ["src/page/*"],
+      "@lib/*": ["src/lib/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@icons/*": ["src/assets/icons/*"],
-      "@img/*": ["src/assets/img/*"]
-    } 
+      "@reducer/*": ["src/redux/reducers/*"],
+      "@img/*": ["src/assets/img/*"],
+      "@styles/*": ["src/styles/*"]
+    }
   }
 }
