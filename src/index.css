@@ -2,7 +2,7 @@
 @import "tailwindcss";
 @theme {
   --font-roboto: "Roboto", sans-serif;
-  --breakpoint-phone: 425px;
+  --breakpoint-phone: 425.99px;
   --spacing-container: clamp(20px, 5vw, 70px);
 }
 button {

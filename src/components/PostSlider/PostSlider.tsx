@@ -9,21 +9,20 @@ interface PostSliderProps {
   postCardStyle:string,
   postItemStyle:string,
   postImageStyle: string,
+  postDetailsStyle:string,
   rightControl: React.ReactNode
 }
 
 
-export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, rightControl, postImageStyle}:PostSliderProps) => {
+export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, rightControl, postImageStyle, postDetailsStyle}:PostSliderProps) => {
     const [slider, setSlider] = useState(0)
     const [visibleSlides, setVisibleSlides] = useState(4);
     useEffect(() => {
         const updateSlise = () => {
-            if(window.innerWidth <= 425){
+            if(window.outerWidth <= 425){
                 setVisibleSlides(1)
-            } else if(window.innerWidth <= 768){
-                setVisibleSlides(4)
             } else{
-                setVisibleSlides(4)
+                setVisibleSlides(4);
             }
         }
         updateSlise();
@@ -40,14 +39,14 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, ri
                     {rightControl}
                 </div>
             </div>
-            <div className={`${postCardStyle} phone:justify-between justify-center overflow-hidden rounded-xl p-5 -m-5`  }>
+            <div className={`${postCardStyle} items-stretch justify-center phone:justify-between overflow-hidden rounded-xl p-5 -m-5`  }>
                 {posts.slice(slider, slider + visibleSlides).map((post, index) => (
                     <div className={`${postItemStyle} gap-3 rounded-xl h-full p-2.5 shadow-[5px_0_20px_rgba(0,0,0,0.1),-5px_0_20px_rgba(0,0,0,0.1)] `} key={index}>
-                        <div className={`rounded-xl h-[190px] bg-center  bg-cover bg-no-repeat ${postImageStyle}`} style={{backgroundImage: `url(${post?.imagePost})`}}></div>
-                        <div className='flex flex-col gap-4 phone:flex-1/2 md:flex-1/1'>
-                            <h5 className='text-h5  text-[#3E3232] px-1.5'>{post.title}</h5>
-                            <p className='px-1.5 paragraph text-[#3E3232]/75'>{post.explanation}</p>
-                            <div className='flex  items-center bg-[#F5F5F5] rounded-xl px-3.5 py-4'>
+                        <div className={`rounded-xl min-h-[190px] bg-center  bg-cover bg-no-repeat ${postImageStyle}`} style={{backgroundImage: `url(${post?.imagePost})`}}></div>
+                        <div className={`flex justify-between flex-col gap-4 phone:flex-1/2 md:flex-1/1 ${postDetailsStyle}`}>
+                            <h5 className='text-h5  text-[#3E3232] px-1.5 line-clamp-1'>{post.title}</h5>
+                            <p className='px-1.5 paragraph text-[#3E3232]/75 line-clamp-2'>{post.explanation}</p>
+                            <div className='flex items-center bg-[#F5F5F5] rounded-xl px-3.5 py-3.5'>
                                 <div className='flex gap-2.5 items-center flex-1' >
                                     <div className='bg-purple-500 w-11 h-11 rounded-xl'></div>
                                     <div>

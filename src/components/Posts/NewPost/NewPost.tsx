@@ -29,6 +29,7 @@ export const NewPost = () => {
             postCardStyle="flex phone:flex-col lg:grid lg:grid-cols-2 overflow-auto no-scrollbar gap-6" 
             postItemStyle="flex flex-col phone:flex-row w-full"
             postImageStyle="lg:w-full phone:w-[190px]" 
+            postDetailsStyle="pt-3"
             rightControl={isMobile ? <ButtonSwitch/> :  <ButtonShowAll/>} 
         />
     </div>

@@ -10,7 +10,7 @@ export const TrendyPosts = () => {
 
     const trendyPosts = posts.filter(post => {
         const postData = new Date(post.date)
-        return postData >= twoDayDate && post.favoriteCount == 10; 
+        return postData >= twoDayDate && post.favoriteCount >= 5; 
     })
 
     console.log( twoDayDate)
@@ -18,9 +18,9 @@ export const TrendyPosts = () => {
         <PostSlider 
             posts={trendyPosts} 
             titleBlock={titleBlock}
-            postCardStyle=""
-            postItemStyle=""
-            postImageStyle=""
+            postCardStyle="flex overflow-x-auto no-scrollbar 2xl:gap-0 phone:gap-5"
+            postItemStyle="flex flex-col flex-shrink-0 w-full phone:w-[358px] "
+            postImageStyle="w-full"
             rightControl={<ButtonSwitch/>}
          />
     </div>
