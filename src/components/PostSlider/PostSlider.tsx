@@ -13,7 +13,7 @@ interface PostSliderProps {
 }
 
 
-export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle,rightControl,postImageStyle}:PostSliderProps) => {
+export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, rightControl, postImageStyle}:PostSliderProps) => {
     const [slider, setSlider] = useState(0)
     const [visibleSlides, setVisibleSlides] = useState(4);
     useEffect(() => {
@@ -40,9 +40,9 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle,rig
                     {rightControl}
                 </div>
             </div>
-            <div className={`${postCardStyle} lg:justify-between overflow-hidden shadow-[10px_0_20px_rgba(0,244,255,0.8),-10px_0_20px_rgba(255,0,123,0.8)] rounded-xl py-9`  }>
+            <div className={`${postCardStyle} phone:justify-between justify-center overflow-hidden rounded-xl p-5 -m-5`  }>
                 {posts.slice(slider, slider + visibleSlides).map((post, index) => (
-                    <div className={`${postItemStyle} gap-3 rounded-xl h-full p-2.5 shadow-[10px_0_20px_rgba(0,0,0,0.1),-10px_0_20px_rgba(0,0,0,0.1)] `} key={index}>
+                    <div className={`${postItemStyle} gap-3 rounded-xl h-full p-2.5 shadow-[5px_0_20px_rgba(0,0,0,0.1),-5px_0_20px_rgba(0,0,0,0.1)] `} key={index}>
                         <div className={`rounded-xl h-[190px] bg-center  bg-cover bg-no-repeat ${postImageStyle}`} style={{backgroundImage: `url(${post?.imagePost})`}}></div>
                         <div className='flex flex-col gap-4 phone:flex-1/2 md:flex-1/1'>
                             <h5 className='text-h5  text-[#3E3232] px-1.5'>{post.title}</h5>
