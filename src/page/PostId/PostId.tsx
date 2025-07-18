@@ -11,13 +11,13 @@ export const PostId = () => {
     const { postId } = useParams();
     return <div>
        <div>{posts.filter((post) => post.objectId == postId).map((post,index) => post && (
-            <div key={index} className="flex flex-col gap-10 phone:gap-[50px]">
-                <div>
+            <div key={index} className="flex flex-col md:flex-row gap-8 md:gap-5 md:items-start">
+                <div className="flex flex-col gap-8 md:flex-3">
                     <div>
                         <h1 className="font-roboto text-xl font-medium text-black md:text-4xl md:font-normal pb-5">{post.title}</h1>
                         <div className="rounded-xl h-[198px] phone:h-[336px] w-full bg-cover bg-center bg-no-repeat" style={{backgroundImage:`url(${post.imagePost})`}}></div>
                     </div>
-                    <div className="flex justify-between items-center self-center max-w-[516px] w-full">
+                    <div className="flex justify-between phone:justify-evenly items-center self-center max-w-[516px] w-full">
                         <div className="post-meta-item">
                             <FaRegCalendar className="text-[#3E3232]/50"/>
                             <span className="text-[#3E3232]/75">{new Date(post.date).toLocaleDateString('en-US',{
@@ -41,9 +41,8 @@ export const PostId = () => {
                         <p className="paragraph text-[#3E3232]">{post.explanation}</p>
                     </div>
                 </div>
-
-                <div className="flex flex-col gap-5 sm:flex-row justify-between">
-                    <div className="px-[0.9375rem] py-5 bg-[#F5F5F5] rounded-xl phone:order-2 flex-1/3">
+                <div className="flex flex-col gap-5 sm:flex-row md:flex-col justify-between md:justify-self-auto md:flex-1">
+                    <div className="px-[0.9375rem] py-5 bg-[#F5F5F5] rounded-xl phone:order-2 flex-1/2 md:flex-auto">
                         <div className="flex items-center gap-1.5">
                             <img className="w-1 h-2.5" src={rectangle} alt="" />
                             <h4 className="text-h4">Tags</h4>
@@ -56,7 +55,7 @@ export const PostId = () => {
                             </ul>
                         </nav>
                     </div>
-                    <div className="flex flex-col gap-5 phone:order-1 flex-1/2">
+                    <div className="flex flex-col justify-center md:justify-start gap-5 phone:order-1 flex-1/1 md:flex-auto">
                         <div className="h-10 flex justify-between gap-2 phone:max-w-[370px] w-full">
                             <button className="button-light text-base">
                                 <IoMdPaperPlane className="text-[#3E3232]/50"/>
@@ -71,7 +70,7 @@ export const PostId = () => {
                                 <span className="text-btn text-[#3E3232]/75">Comment</span>
                             </button>
                         </div>
-                        <div className="bg-Gray rounded-xl p-[15px] flex items-center gap-2.5">
+                        <div className="bg-Gray rounded-xl p-[15px] flex items-center gap-2.5 relative">
                             <div className="bg-pink-600 rounded-xl max-w-[87px] w-full aspect-square"></div>
                             <div className="flex flex-col gap-2">
                                 <h5 className="text-h5 text-Black">{post.user.username}</h5>
@@ -80,7 +79,7 @@ export const PostId = () => {
                                     <span>Follow</span>
                                 </button>
                             </div>
-                            <p className="text-Input text-Black/75 self-start translate-x-[14px] translate-y-[10px]">27 post</p>
+                            <p className="text-Input text-Black/75 absolute right-2 top-6">27 post</p>
                         </div>
                     </div>
                 </div>
