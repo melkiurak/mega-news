@@ -54,7 +54,7 @@ input {
   @apply flex items-center gap-2 font-roboto font-medium text-sm;
 }
 .button-light {
-  @apply rounded-xl bg-[#F5F5F5] flex items-center gap-2 h-full px-2;
+  @apply rounded-xl bg-[#F5F5F5] flex items-center gap-2 h-full px-4;
 }
 .button-primary {
   @apply flex items-center gap-2 text-white bg-Primary/75 rounded-xl px-4;
