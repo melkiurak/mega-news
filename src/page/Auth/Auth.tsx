@@ -1,4 +1,3 @@
-import '@styles/Auth.css'
 import { Login } from "@components/Login/Login"
 import { Registration } from "@components/Register/Registration"
 import  Parse  from '@lib/parseClient';
