@@ -19,9 +19,11 @@ export interface CreatePost {
   favoriteCount: number;
 }
 export interface Post {
+  objectId: string;
   title: string;
   imagePost: string;
   explanation: string;
+  tags: Tags[];
   user: User;
   date: string;
   favoriteCount: number;

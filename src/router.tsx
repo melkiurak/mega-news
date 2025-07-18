@@ -5,6 +5,7 @@ import { Home } from "@page/Home/Home";
 import { Profile } from "@page/Profile/Profile";
 import { SendPost } from "./page/Profile/SendPost/SendPost";
 import { Auth } from "@page/Auth/Auth";
+import { PostId } from "@page/PostId/PostId";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       ]},
       { path: "*", element: <NotFoundPage /> },
       { path: "/Auth", element: <Auth /> },
+      { path: `/Post/:postId`, element: <PostId /> },
     ],
   },
 ]);

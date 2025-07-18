@@ -29,9 +29,11 @@ export const dataPosts = async () => {
         title: post.get("title"),
         imagePost: imagePost ? imagePost.url() : "",
         explanation: post.get("explanation"),
+        tags: post.get("tags"),
         user: user,
         date: post.get("date"),
         favoriteCount: post.get("favoriteCount"),
+        objectId: post.id ?? "underfine",
       };
     });
   } catch (error) {
