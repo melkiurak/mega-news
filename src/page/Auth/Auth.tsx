@@ -1,6 +1,5 @@
 import { Login } from "@components/Login/Login"
 import { Registration } from "@components/Register/Registration"
-import  Parse  from '@lib/parseClient';
 import { useState } from "react";
 import * as z from 'zod'
 
@@ -13,7 +12,7 @@ export const Auth = () => {
     });
     return <div className="p-3 flex items-center justify-center">
         <div className="max-w-[500px] w-full">
-            {registrationShow ? <Registration Parse={Parse} validateUser={validateUser}/> :  <Login setRegistrationShow={setRegistrationShow} iconShow={iconShow} setIconShow={setIconShow}/>}
+            {registrationShow ? <Registration validateUser={validateUser}/> :  <Login setRegistrationShow={setRegistrationShow} iconShow={iconShow} setIconShow={setIconShow}/>}
         </div>
     </div>
 }

@@ -1,3 +1,4 @@
+import { object } from "zod";
 import Parse from "../lib/parseClient";
 
 export const dataTags = async () => {

@@ -11,8 +11,8 @@ export const PostId = () => {
     const { postId } = useParams();
     return <div>
        <div>{posts.filter((post) => post.objectId == postId).map((post,index) => post && (
-            <div key={index} className="flex flex-col md:flex-row gap-8 md:gap-5 md:items-start">
-                <div className="flex flex-col gap-8 md:flex-3">
+            <div key={index} className="flex flex-col lg:flex-row gap-8 md:gap-5 md:items-start">
+                <div className="flex flex-col gap-8 md:flex-1">
                     <div>
                         <h1 className="font-roboto text-xl font-medium text-black md:text-4xl md:font-normal pb-5">{post.title}</h1>
                         <div className="rounded-xl h-[198px] phone:h-[336px] w-full bg-cover bg-center bg-no-repeat" style={{backgroundImage:`url(${post.imagePost})`}}></div>
@@ -41,7 +41,7 @@ export const PostId = () => {
                         <p className="paragraph text-[#3E3232]">{post.explanation}</p>
                     </div>
                 </div>
-                <div className="flex flex-col gap-5 sm:flex-row md:flex-col justify-between md:justify-self-auto md:flex-1">
+                <div className="flex flex-col gap-5 sm:flex-row lg:flex-col justify-between lg:justify-self-auto">
                     <div className="px-[0.9375rem] py-5 bg-[#F5F5F5] rounded-xl phone:order-2 flex-1/2 md:flex-auto">
                         <div className="flex items-center gap-1.5">
                             <img className="w-1 h-2.5" src={rectangle} alt="" />

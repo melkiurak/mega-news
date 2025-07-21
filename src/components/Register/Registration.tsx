@@ -4,14 +4,11 @@ import { RxLockClosed } from "react-icons/rx"
 import type { CreateUser } from "../../types";
 import { useDispatch } from "react-redux";
 import { logIn, setUser } from "../../redux/reducers/users-reducer";
+import  Parse  from '@lib/parseClient';
 
-interface RegisterProps {
-    Parse: any,
-}
-
-export const Registration = ({Parse,}: RegisterProps) => {
+export const Registration = () => {
     const [formData, setFormData] = useState<CreateUser>({
-        name: '',
+        username: '',
         password: '',
         avatar: null,
     });
@@ -19,8 +16,8 @@ export const Registration = ({Parse,}: RegisterProps) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try{
-            const user = await Parse.User.signUp(formData.name, formData.password, {avatar: formData.avatar}); 
-            console.log(formData.name, formData.password);
+            const user = await Parse.User.signUp(formData.username, formData.password, {avatar: formData.avatar}); 
+            console.log(formData.username, formData.password);
             dispatch(logIn());
             dispatch(setUser({
                 username: user.get('username'),
@@ -36,7 +33,7 @@ export const Registration = ({Parse,}: RegisterProps) => {
             <label className="flex flex-col gap-2">
                 <span>Enter the name</span>
                 <div className="h-10 relative">
-                    <input type="text" value={formData.name} onChange={(e) => setFormData({...formData, name:e.target.value})}/>
+                    <input type="text" value={formData.username} onChange={(e) => setFormData({...formData, username:e.target.value})}/>
                     <FaRegUser className="absolute top-1/2 -translate-y-1/2 right-3"/>
                 </div>
             </label>
