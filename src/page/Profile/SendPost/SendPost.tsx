@@ -38,6 +38,7 @@ export const SendPost = () => {
     const [errorValue, setErrorValue] = useState(false);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const explainInputRef = useRef<HTMLInputElement>(null);
 
     const { user } = useSelector((state:storeType) => state.user);
 
@@ -66,12 +67,13 @@ export const SendPost = () => {
             AddTag();
         };
     };
-    const handleImageChange = (e:ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = (e:ChangeEvent<HTMLInputElement>, inputType?:string) => {
         const file = e.target.files?.[0];
-        if(file){
+        if(file && inputType === 'explain'){
+            setImageTool(URL.createObjectURL(file));
+        } else if (file  && inputType === 'main') {
             setFormPost(prev => ({...prev, imagePost: file}));
             setImageValue(URL.createObjectURL(file));
-            setImageTool(URL.createObjectURL(file));
         }
     };
     const handlePublickPost = async(e: React.FormEvent) => {
@@ -99,7 +101,7 @@ export const SendPost = () => {
     };
     const handleTools = (toolName?:string,) => {
         if(toolName === 'Image'){
-            fileInputRef.current?.click();
+            explainInputRef.current?.click();
         }
         else{console.log('Это не выбор фота')}
     }
@@ -156,19 +158,20 @@ export const SendPost = () => {
                                     <span className="hidden md:block text-btn text-[#3E32324B]">{tools.name}</span>
                                 </button>
                             ))}
+                           <input type="file" ref={explainInputRef} className="hidden" onChange={(e) => handleImageChange(e, 'explain')} />
                         </div>
                         <div
                             id="Explanation"
                             className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full h-[377px] resize-none outline-none mt-6"
                             contentEditable={true}
-                            dangerouslySetInnerHTML={{ __html: formPost.explanation }}
                             onInput={(e) => {
                                 const target = e.target as HTMLInputElement;
                                 setFormPost({ ...formPost, explanation: target.value });
                             }}
                         >
+                            <div dangerouslySetInnerHTML={{ __html: formPost.explanation }} />
+                            <div className="w-5 h-5 inline-block"  style={{backgroundImage: `url(${imageTool})`}}></div>                
                         </div> 
-                        <div className="w-5 h-5" style={{backgroundImage: `url(${imageTool})`}}></div>                
                     </div>
                 </div>
             </div>
@@ -187,7 +190,7 @@ export const SendPost = () => {
                                         <FaPlus/>
                                         <span className="text-btn">Select</span>
                                     </button>
-                                    <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageChange} />
+                                    <input type="file" ref={fileInputRef} className="hidden" onChange={(e) => handleImageChange(e, 'main')} />
                                 </div>
                             )}
                         </div>
