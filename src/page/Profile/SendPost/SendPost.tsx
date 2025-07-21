@@ -69,8 +69,11 @@ export const SendPost = () => {
     };
     const handleImageChange = (e:ChangeEvent<HTMLInputElement>, inputType?:string) => {
         const file = e.target.files?.[0];
+        const Explanation = document.getElementById('Explanation');
         if(file && inputType === 'explain'){
-            setImageTool(URL.createObjectURL(file));
+            const imgExplanation = document.createElement('img');
+            imgExplanation.src = URL.createObjectURL(file)
+            Explanation?.appendChild(imgExplanation)
         } else if (file  && inputType === 'main') {
             setFormPost(prev => ({...prev, imagePost: file}));
             setImageValue(URL.createObjectURL(file));
@@ -138,8 +141,8 @@ export const SendPost = () => {
                         </div>
                         <div className={`flex-wrap gap-2 ${tags.length == 0 ? 'hidden' : 'flex'}`}>
                             {tags.map((tag, index) => (
-                                <div className="rounded-xl px-3 py-1 bg-white border-2 border-[#E6E6E6] text-[#3E3232] flex items-center gap-2">
-                                    <span key={index} className=" text-btn">{tag}</span>
+                                <div key={index} className="rounded-xl px-3 py-1 bg-white border-2 border-[#E6E6E6] text-[#3E3232] flex items-center gap-2">
+                                    <span className=" text-btn">{tag}</span>
                                     <button onClick={() => handleRemoveTag(tag)} type="button">
                                         <IoIosClose className="text-2xl"/>
                                     </button>
@@ -162,15 +165,14 @@ export const SendPost = () => {
                         </div>
                         <div
                             id="Explanation"
-                            className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full h-[377px] resize-none outline-none mt-6"
+                            className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full h-[377px] resize-none outline-none mt-6  whitespace-pre-wrap overflow-auto "
                             contentEditable={true}
+                            dangerouslySetInnerHTML={{ __html: formPost.explanation }}
                             onInput={(e) => {
-                                const target = e.target as HTMLInputElement;
-                                setFormPost({ ...formPost, explanation: target.value });
+                                const target = e.target as HTMLDivElement;
+                                setFormPost({ ...formPost, explanation: target.innerHTML });
                             }}
                         >
-                            <div dangerouslySetInnerHTML={{ __html: formPost.explanation }} />
-                            <div className="w-5 h-5 inline-block"  style={{backgroundImage: `url(${imageTool})`}}></div>                
                         </div> 
                     </div>
                 </div>
