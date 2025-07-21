@@ -10,7 +10,7 @@ export interface User {
   avatar?: string | null;
 }
 export interface CreatePost {
-  user: User;
+  user: User[];
   date: string;
   title: string;
   tags: Tags[];
