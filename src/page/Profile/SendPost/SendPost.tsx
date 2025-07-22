@@ -44,6 +44,8 @@ export const SendPost = () => {
     const explainRef = useRef<HTMLDivElement>(null);
     const { user } = useSelector((state:storeType) => state.user);
 
+    const Explanation = document.getElementById('Explanation');
+    
     const AddTag = (tag?:string) => {
         const finalyTag = (tag ?? tagValue).trim() 
         if(tagValue.trim() !== "" && tags.length < maxTags && availableTags.includes(finalyTag) ){
@@ -71,7 +73,6 @@ export const SendPost = () => {
     };
     const handleImageChange = (e:ChangeEvent<HTMLInputElement>, inputType?:string) => {
         const file = e.target.files?.[0];
-        const Explanation = document.getElementById('Explanation');
         if(file && inputType === 'explain'){
             const imgExplanation = document.createElement('img');
             imgExplanation.className = "editor-img";
@@ -120,8 +121,10 @@ export const SendPost = () => {
             explainImgRef.current?.click();
         } else if(toolName === 'Color'){
             explainColorRef.current?.click();
-        } else if(toolName === 'Align'){
-            handleAlighText();
+        } else if(toolName === 'Text'){
+            const title = document.createElement('h4');
+            title.className = 'text-h4';
+            Explanation?.appendChild(title);
         }
         else{console.log('Это не выбор фота')}
     };
