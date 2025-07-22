@@ -1,4 +1,4 @@
-import React, { useRef, useState, type ChangeEvent } from "react";
+import React, { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { BsCardImage } from "react-icons/bs";
 import { IoMdColorFilter, IoMdPaperPlane, IoIosClose } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
@@ -32,13 +32,13 @@ export const SendPost = () => {
     });
     const [tagValue, setTagValue] = useState<string>("");
     const [imageValue, setImageValue] = useState<string | null>(null);
-    const [imageTool, setImageTool] = useState<string | null>(null);
     const [showClueTag, setShowClueTag] = useState(false);
     const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
     const [errorValue, setErrorValue] = useState(false);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const explainInputRef = useRef<HTMLInputElement>(null);
+    const explainImgRef = useRef<HTMLInputElement>(null);
+    const explainRef = useRef<HTMLDivElement>(null);
 
     const { user } = useSelector((state:storeType) => state.user);
 
@@ -72,8 +72,9 @@ export const SendPost = () => {
         const Explanation = document.getElementById('Explanation');
         if(file && inputType === 'explain'){
             const imgExplanation = document.createElement('img');
-            imgExplanation.src = URL.createObjectURL(file)
-            Explanation?.appendChild(imgExplanation)
+            imgExplanation.className = "editor-img";
+            imgExplanation.src = URL.createObjectURL(file);
+            Explanation?.appendChild(imgExplanation);
         } else if (file  && inputType === 'main') {
             setFormPost(prev => ({...prev, imagePost: file}));
             setImageValue(URL.createObjectURL(file));
@@ -104,10 +105,14 @@ export const SendPost = () => {
     };
     const handleTools = (toolName?:string,) => {
         if(toolName === 'Image'){
-            explainInputRef.current?.click();
+            explainImgRef.current?.click();
         }
         else{console.log('Это не выбор фота')}
-    }
+    };
+    useEffect(() => {
+        if(explainRef.current)
+        explainRef.current.innerHTML = formPost.explanation || '';
+    },[]);
     const suggestionsTags = availableTags.filter(tag => tag.toLowerCase().includes(tagValue.toLowerCase()) && !tags.includes(tag)).slice(0, 5);
     return <div>
         <form className="flex flex-col lg:flex-row gap-5">
@@ -156,21 +161,23 @@ export const SendPost = () => {
                     <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5">
                         <div className="flex justify-between items-center lg:max-w-[500px] gap-5">
                             {postTools.map((tools, index) => (
-                                <button key={index} className="bg-[#F5F5F5] rounded-xl px-4 py-2.5 flex items-center gap-2 flex-1" type="button" onClick={() => handleTools(tools.name)}>
+                                <button key={index} className="bg-[#F5F5F5] rounded-xl py-2.5 flex items-center justify-center gap-2 flex-1" type="button" onClick={() => handleTools(tools.name)}>
                                     <span className="text-[#3E323280] text-base">{React.createElement(tools.icon)}</span>
                                     <span className="hidden md:block text-btn text-[#3E32324B]">{tools.name}</span>
                                 </button>
                             ))}
-                           <input type="file" ref={explainInputRef} className="hidden" onChange={(e) => handleImageChange(e, 'explain')} />
+                           <input type="file" ref={explainImgRef} className="hidden" onChange={(e) => handleImageChange(e, 'explain')} />
                         </div>
                         <div
                             id="Explanation"
-                            className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full h-[377px] resize-none outline-none mt-6  whitespace-pre-wrap overflow-auto "
+                            dir="auto"
+                            ref={explainRef}
+                            className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full break-words h-[377px] resize-none outline-none mt-6  whitespace-pre-wrap overflow-auto"
                             contentEditable={true}
-                            dangerouslySetInnerHTML={{ __html: formPost.explanation }}
-                            onInput={(e) => {
-                                const target = e.target as HTMLDivElement;
-                                setFormPost({ ...formPost, explanation: target.innerHTML });
+                            onInput={() => {
+                            if (explainRef.current) {
+                                setFormPost((prev) => ({...prev,explanation: explainRef.current!.innerHTML,}));
+                                }
                             }}
                         >
                         </div> 

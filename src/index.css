@@ -59,3 +59,6 @@ input {
 .button-primary {
   @apply flex items-center gap-2 text-white bg-Primary/75 rounded-xl px-4;
 }
+.editor-img {
+  @apply rounded-xl max-w-[872px] w-full h-[161px] md:h-[273px] lg:h-[486px] block mx-auto object-cover;
+}
