@@ -33,13 +33,15 @@ export const SendPost = () => {
     const [tagValue, setTagValue] = useState<string>("");
     const [imageValue, setImageValue] = useState<string | null>(null);
     const [showClueTag, setShowClueTag] = useState(false);
-    const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
     const [errorValue, setErrorValue] = useState(false);
+    const [explainColor, setExplainColor ] = useState('#000000');
+    const [alignText, setAlignText] = useState('auto');
+    const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const explainImgRef = useRef<HTMLInputElement>(null);
+    const explainColorRef = useRef<HTMLInputElement>(null);
     const explainRef = useRef<HTMLDivElement>(null);
-
     const { user } = useSelector((state:storeType) => state.user);
 
     const AddTag = (tag?:string) => {
@@ -80,6 +82,16 @@ export const SendPost = () => {
             setImageValue(URL.createObjectURL(file));
         }
     };
+    const handleColorChange = () => {
+       const color =  explainColorRef.current
+       if(!color) return;
+       setExplainColor(color.value);
+       console.log(color.value)
+
+    };
+    const handleAlighText = () => {
+
+    };
     const handlePublickPost = async(e: React.FormEvent) => {
         e.preventDefault();
 
@@ -106,9 +118,14 @@ export const SendPost = () => {
     const handleTools = (toolName?:string,) => {
         if(toolName === 'Image'){
             explainImgRef.current?.click();
+        } else if(toolName === 'Color'){
+            explainColorRef.current?.click();
+        } else if(toolName === 'Align'){
+            handleAlighText();
         }
         else{console.log('Это не выбор фота')}
     };
+
     useEffect(() => {
         if(explainRef.current)
         explainRef.current.innerHTML = formPost.explanation || '';
@@ -167,12 +184,14 @@ export const SendPost = () => {
                                 </button>
                             ))}
                            <input type="file" ref={explainImgRef} className="hidden" onChange={(e) => handleImageChange(e, 'explain')} />
+                           <input type="color" ref={explainColorRef} className="hidden" onChange={handleColorChange}/>
                         </div>
                         <div
                             id="Explanation"
                             dir="auto"
                             ref={explainRef}
-                            className="border-none bg-[#F5F5F5] p-5 rounded-xl w-full break-words h-[377px] resize-none outline-none mt-6  whitespace-pre-wrap overflow-auto"
+                            className={`border-none bg-[#F5F5F5] p-5 rounded-xl w-full break-all h-[377px] resize-none outline-none mt-6 whitespace-pre-wrap overflow-auto wrap-break-word`}
+                            style={{ color: explainColor }}
                             contentEditable={true}
                             onInput={() => {
                             if (explainRef.current) {
@@ -181,6 +200,7 @@ export const SendPost = () => {
                             }}
                         >
                         </div> 
+                        
                     </div>
                 </div>
             </div>
