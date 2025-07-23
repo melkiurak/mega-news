@@ -27,7 +27,7 @@ export const SendPost = () => {
         title: '',
         tags: [],
         imagePost: null,
-        explanation: '',
+        explanation: [],
         favoriteCount: 0,
     });
     const [tagValue, setTagValue] = useState<string>("");
@@ -129,10 +129,7 @@ export const SendPost = () => {
         else{console.log('Это не выбор фота')}
     };
 
-    useEffect(() => {
-        if(explainRef.current)
-        explainRef.current.innerHTML = formPost.explanation || '';
-    },[]);
+
     const suggestionsTags = availableTags.filter(tag => tag.toLowerCase().includes(tagValue.toLowerCase()) && !tags.includes(tag)).slice(0, 5);
     return <div>
         <form className="flex flex-col lg:flex-row gap-5">
@@ -198,7 +195,7 @@ export const SendPost = () => {
                             contentEditable={true}
                             onInput={() => {
                             if (explainRef.current) {
-                                setFormPost((prev) => ({...prev,explanation: explainRef.current!.innerHTML,}));
+                                setFormPost((prev) => ({...prev, explanation: explainRef.current!.innerHTML,}));
                                 }
                             }}
                         >

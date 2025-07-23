@@ -12,7 +12,7 @@ button {
   @apply cursor-pointer;
 }
 input {
-  @apply rounded-xl bg-[#F5F5F5] h-full w-full text-[#3E3232] outline-none;
+  @apply rounded-xl bg-[#F5F5F5]  w-full text-[#3E3232] outline-none px-3;
 }
 .paragraph {
   @apply text-[#3e3232b7] font-roboto text-sm font-normal;
@@ -26,7 +26,7 @@ input {
 .text-h4 {
   @apply font-roboto text-xl font-medium text-black;
 }
-.text-h5 {
+h5 {
   @apply font-roboto text-base font-medium;
 }
 .text-h6 {

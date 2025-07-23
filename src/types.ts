@@ -9,20 +9,26 @@ export interface User {
   username: string;
   avatar?: string | null;
 }
+export interface Explanation {
+  title: string;
+  paragraph: string;
+  img: File | null;
+}
 export interface CreatePost {
   user: User[];
   date: string;
   title: string;
   tags: Tags[];
   imagePost: File | null;
-  explanation: string;
+  explanation: Explanation[];
   favoriteCount: number;
 }
+
 export interface Post {
   objectId: string;
   title: string;
   imagePost: string;
-  explanation: string;
+  explanation: Explanation[];
   tags: Tags[];
   user: User;
   date: string;

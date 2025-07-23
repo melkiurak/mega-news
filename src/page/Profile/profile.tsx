@@ -27,7 +27,7 @@ export const Profile = () => {
                 </nav>
                 <button className="bg-[#E6E6E6] px-4 py-3 rounded-xl shadow flex items-center gap-2 absolute lg:static right-2.5 top-0 sm:top-auto sm:bottom-0 text-[#F81539BF]">
                     <FaUserEdit/>
-                    <span className="hidden sm:block text-btn">Edit Profile</span>
+                    <Link className="hidden sm:block text-btn" to={'/ProfileEdit'}>Edit Profile</Link>
                 </button>
             </div>
         </div>
