@@ -1,7 +1,7 @@
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 interface Button {
-    next: () => void ,
+    next: () => void,
     prev: () => void,
 }
 
