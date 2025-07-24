@@ -1,5 +1,13 @@
-import {expect, test} from 'vitest'
+import  { expect, test,} from 'vitest'
+import { PostSlider } from '@components/PostSlider/PostSlider'
+import { setUser } from '@reducer/users-reducer';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3)
+const postTest = test.extend({
+  user: async (_, use) => {
+    await use(setUser) 
+  }
 })
+
+test("Render Post", ({user}) => {
+  expect(user).toBe('Alice')
+});
