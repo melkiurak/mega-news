@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useState, type ChangeEvent } from "react";
+import React, {useRef, useState, type ChangeEvent } from "react";
+import { AddImage } from "@components/addImage/AddImage";
+
 import { BsCardImage } from "react-icons/bs";
 import { IoMdColorFilter, IoMdPaperPlane, IoIosClose } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
-import type { CreatePost } from "../../../types";
+
 import useTags from "../../../hooks/useTags";
 import { availableTags } from "../../../constants/tags";
-import Parse from "@lib/parseClient";
+import Parse  from "@lib/parseClient";
 import { useSelector } from "react-redux";
+import type { CreatePost } from "../../../types";
 import type { storeType } from "../../../redux/store";
-import { AddImage } from "@components/addImage/addImage";
 
 const postTools = [
     {name: 'Image', icon:BsCardImage},
@@ -99,7 +101,12 @@ export const SendPost = () => {
 
         const Post = Parse.Object.extend("Posts");
         const post = new Post();
-        const parseFile  = new Parse.File(formPost.imagePost?.name, formPost.imagePost);
+        let parseFile;
+        if(formPost.imagePost && formPost.imagePost.name ){
+            parseFile  = new Parse.File(formPost.imagePost?.name, formPost.imagePost);
+        } else {
+            console.log('File not')
+        }
         const date = new Date();
 
         post.set('title', formPost.title );

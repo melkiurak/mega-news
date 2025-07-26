@@ -1,10 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "vitest/config";
 import path from "path";
-// https://vite.dev/config/
+
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@src": path.resolve(__dirname, "./src"),
@@ -18,5 +15,9 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "src/styles"),
       events: "events",
     },
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
   },
 });

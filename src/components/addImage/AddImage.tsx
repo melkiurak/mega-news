@@ -25,9 +25,9 @@ export const AddImage = ({title, image, onImageChange, ImageStyle}:AddImageProps
                     {image ? (
                         <div className="w-full h-full bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${image})` }}></div>
                     ) : (
-                        <div className="flex flex-col items-center gap-8 justify-center h-full">
+                        <div className="flex flex-col flex-wrap items-center gap-8 justify-center h-full">
                             <BsCardImage className="w-[120px] h-[96px] text-[#3E323240] "/>
-                            <div>
+                            <div className="flex items-center flex-col">
                                 <p className="text-Input text-[#3E3232BF]">Drop image here, paste or</p>
                                 <button type="button" className="flex items-center justify-center py-1 px-4 gap-2 text-[#3E323280] border-2 border-[#E6E6E6] rounded-xl" onClick={() => fileInputRef.current?.click()}>
                                     <FaPlus/>
