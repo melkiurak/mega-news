@@ -9,7 +9,7 @@ test("Check create posts", () => {
     <Provider store={store}>
       <SendPost />
     </Provider>
-);
+  );
   const buttonCreatePost = screen.getByRole('button', {name: /public/i});
   fireEvent.click(buttonCreatePost);
   expect(buttonCreatePost).toBeDefined();
