@@ -1,7 +1,10 @@
-import { AddImage } from "@components/addImage/addImage"
+import { AddExplain } from "@components/addExplain/AddExplain"
+import { AddImage } from "@components/addImage/AddImage"
+import { useState } from "react"
 
 export const ProfileEdit = () => {
-    return <form>
+    const [formEdit, setFormEdit] = useState()
+    return <form className="flex flex-col gap-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             <label htmlFor="">
                 <h5>First Name</h5>
@@ -28,7 +31,10 @@ export const ProfileEdit = () => {
                 <input type="text" className="h-12 mt-3.5" />
             </label>
         </div>
-        <AddImage title="Add Banner" ImageStyle="h-[360px] md:h-[170px] lg:h-[204px]" ImageContentStyle="flex-col md:flex-row"/>           
-        <div></div>
+        <AddImage title="Add Banner" ImageStyle="h-[360px] md:h-[170px] lg:h-[204px]" ImageContentStyle=" md:flex-row"/>           
+        <div className="flex flex-col lg:flex-row gap-6 ">
+            <AddExplain setForm={setFormEdit}/>
+            <AddImage title="Add Image" ImageStyle="h-[394px]" ImageContentStyle="md:flex-row"/>           
+        </div>
     </form>
 }

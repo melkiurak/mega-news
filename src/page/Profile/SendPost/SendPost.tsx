@@ -1,10 +1,8 @@
-import React, {useRef, useState, type ChangeEvent } from "react";
+import React, {useState, type ChangeEvent } from "react";
 import { AddImage } from "@components/addImage/AddImage";
 
-import { BsCardImage } from "react-icons/bs";
-import { IoMdColorFilter, IoMdPaperPlane, IoIosClose } from "react-icons/io";
-import { FaCode } from "react-icons/fa";
-import { FaAlignLeft, FaLink, FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
+import { IoMdPaperPlane, IoIosClose } from "react-icons/io";
+import { FaPlus, FaRegFloppyDisk, FaRegEye } from "react-icons/fa6";
 
 import useTags from "../../../hooks/useTags";
 import { availableTags } from "../../../constants/tags";
@@ -12,14 +10,8 @@ import Parse  from "@lib/parseClient";
 import { useSelector } from "react-redux";
 import type { CreatePost } from "../../../types";
 import type { storeType } from "../../../redux/store";
+import { AddExplain } from "@components/addExplain/AddExplain";
 
-const postTools = [
-    {name: 'Image', icon:BsCardImage},
-    {name: 'Color', icon:IoMdColorFilter},
-    {name: 'Text', icon: FaCode},
-    {name: 'Align', icon: FaAlignLeft},
-    {name: 'Link', icon: FaLink},
-];
 
 const maxTags = 5
 
@@ -37,17 +29,10 @@ export const SendPost = () => {
     const [imageValue, setImageValue] = useState<string | null>(null);
     const [showClueTag, setShowClueTag] = useState(false);
     const [errorValue, setErrorValue] = useState(false);
-    const [explainColor, setExplainColor ] = useState('#000000');
-    const [alignText, setAlignText] = useState('auto');
     const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
 
-    const fileInputRef = useRef<HTMLInputElement>(null);
-    const explainImgRef = useRef<HTMLInputElement>(null);
-    const explainColorRef = useRef<HTMLInputElement>(null);
-    const explainRef = useRef<HTMLDivElement>(null);
     const { user } = useSelector((state:storeType) => state.user);
 
-    const Explanation = document.getElementById('Explanation');
     
     const AddTag = (tag?:string) => {
         const finalyTag = (tag ?? tagValue).trim() 
@@ -73,28 +58,6 @@ export const SendPost = () => {
             e.preventDefault();
             AddTag();
         };
-    };
-    const handleImageChange = (e:ChangeEvent<HTMLInputElement>, inputType?:string) => {
-        const file = e.target.files?.[0];
-        if(file && inputType === 'explain'){
-            const imgExplanation = document.createElement('img');
-            imgExplanation.className = "editor-img";
-            imgExplanation.src = URL.createObjectURL(file);
-            Explanation?.appendChild(imgExplanation);
-        } else if (file  && inputType === 'main') {
-            setFormPost(prev => ({...prev, imagePost: file}));
-            setImageValue(URL.createObjectURL(file));
-        }
-    };
-    const handleColorChange = () => {
-       const color =  explainColorRef.current
-       if(!color) return;
-       setExplainColor(color.value);
-       console.log(color.value)
-
-    };
-    const handleAlighText = () => {
-
     };
     const handlePublickPost = async(e: React.FormEvent) => {
         e.preventDefault();
@@ -124,19 +87,6 @@ export const SendPost = () => {
         }
         console.log(formPost)
     };
-    const handleTools = (toolName?:string,) => {
-        if(toolName === 'Image'){
-            explainImgRef.current?.click();
-        } else if(toolName === 'Color'){
-            explainColorRef.current?.click();
-        } else if(toolName === 'Text'){
-            const title = document.createElement('h4');
-            title.className = 'text-h4';
-            Explanation?.appendChild(title);
-        }
-        else{console.log('Это не выбор фота')}
-    };
-
 
     const suggestionsTags = availableTags.filter(tag => tag.toLowerCase().includes(tagValue.toLowerCase()) && !tags.includes(tag)).slice(0, 5);
     return <div>
@@ -181,36 +131,7 @@ export const SendPost = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-[15px]">
-                    <label htmlFor="" className="text-h5">Explanation</label>
-                    <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5">
-                        <div className="flex justify-between items-center lg:max-w-[500px] gap-5">
-                            {postTools.map((tools, index) => (
-                                <button key={index} className="bg-[#F5F5F5] rounded-xl py-2.5 flex items-center justify-center gap-2 flex-1" type="button" onClick={() => handleTools(tools.name)}>
-                                    <span className="text-[#3E323280] text-base">{React.createElement(tools.icon)}</span>
-                                    <span className="hidden md:block text-btn text-[#3E32324B]">{tools.name}</span>
-                                </button>
-                            ))}
-                           <input type="file" ref={explainImgRef} className="hidden" onChange={(e) => handleImageChange(e, 'explain')} />
-                           <input type="color" ref={explainColorRef} className="hidden" onChange={handleColorChange}/>
-                        </div>
-                        <div
-                            id="Explanation"
-                            dir="auto"
-                            ref={explainRef}
-                            className={`border-none bg-[#F5F5F5] p-5 rounded-xl w-full break-all h-[377px] resize-none outline-none mt-6 whitespace-pre-wrap overflow-auto wrap-break-word`}
-                            style={{ color: explainColor }}
-                            contentEditable={true}
-                            onInput={() => {
-                            if (explainRef.current) {
-                                setFormPost((prev) => ({...prev, explanation: explainRef.current!.innerHTML,}));
-                                }
-                            }}
-                        >
-                        </div> 
-                        
-                    </div>
-                </div>
+                <AddExplain setForm={setFormPost} />
             </div>
             <div className="flex flex-col gap-[25px] lg:max-w-[360px] w-full">
                 <AddImage title="Add Image" image={imageValue}  onImageChange={(file) => {setFormPost((prev) => ({ ...prev, imagePost: file })); setImageValue(URL.createObjectURL(file));}}/>
