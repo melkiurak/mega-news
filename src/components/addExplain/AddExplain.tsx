@@ -52,6 +52,7 @@ export const AddExplain = ({setForm}:AddImageProps) => {
        setExplainColor(color.value);
        console.log(color.value)
     };
+    
     return <div className="flex flex-col gap-[15px] flex-1">
         <h5>Explanation</h5>
         <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5">
