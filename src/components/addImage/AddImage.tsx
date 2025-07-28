@@ -21,7 +21,7 @@ export const AddImage = ({title, image, onImageChange, ImageStyle, ImageContentS
     return <div className="flex flex-col gap-[15px]">
         <h5>{title}</h5>
         <div className="bg-[#F5F5F5] p-2.5 rounded-xl">
-            <div className={` border-dashed border-[#E1E1E1] ${image ? 'border-none' : 'border-2'} rounded-xl h-[360px] md:h-[394px] ${ImageStyle}`}>
+            <div className={` border-dashed border-[#E1E1E1] ${image ? 'border-none' : 'border-2'} rounded-xl h-[360px] md:h-[394px]  ${ImageStyle}`}>
                 {image ? (
                     <div className="w-full h-full bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${image})` }}></div>
                 ) : (

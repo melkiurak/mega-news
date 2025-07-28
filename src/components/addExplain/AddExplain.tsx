@@ -2,7 +2,7 @@ import { BsCardImage } from "react-icons/bs";
 import { IoMdColorFilter} from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import { FaAlignLeft, FaLink } from "react-icons/fa6";
-import React, { useRef, useState, type ChangeEvent } from "react";
+import React, { useEffect, useRef, useState, type ChangeEvent } from "react";
 import type { CreatePost } from "src/types";
 
 interface AddImageProps {
@@ -52,6 +52,14 @@ export const AddExplain = ({setForm}:AddImageProps) => {
        setExplainColor(color.value);
        console.log(color.value)
     };
+    useEffect(() => {
+        if (explainRef.current) {
+            const text = explainRef.current.innerText;
+            const [title, ...rest] = text.split(/\n+/);
+            const html = `<h4>${title.trim()}</h4><p>${rest.join('\n').trim()}</p>`;
+            explainRef.current.innerHTML = html;
+        }
+    }, [])
     return <div className="flex flex-col gap-[15px] flex-1">
         <h5>Explanation</h5>
         <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5">
@@ -74,10 +82,6 @@ export const AddExplain = ({setForm}:AddImageProps) => {
                 contentEditable={true}
                 onInput={() => {
                 if (explainRef.current) {
-                    const text = explainRef.current.innerText
-                    const [title, ...rest] = text.split(/\n+/);
-                    const html = `<h4>${title.trim()}</h4><p>${rest.join('').trim()}</p>`
-                    explainRef.current.innerHTML = html
                     setForm((prev:CreatePost) => ({...prev, explanation: explainRef.current!.innerHTML}));
                 }
                 }}

@@ -34,7 +34,7 @@ export const ProfileEdit = () => {
         <AddImage title="Add Banner" ImageStyle="h-[360px] md:h-[170px] lg:h-[204px]" ImageContentStyle=" md:flex-row"/>           
         <div className="flex flex-col lg:flex-row gap-6 ">
             <AddExplain setForm={setFormEdit}/>
-            <AddImage title="Add Image" ImageStyle="h-[394px]" ImageContentStyle="md:flex-row"/>           
+            <AddImage title="Add Image" ImageStyle="h-[394px]" ImageContentStyle="md:flex-col"/>           
         </div>
     </form>
 }
