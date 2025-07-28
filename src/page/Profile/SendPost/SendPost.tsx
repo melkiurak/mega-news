@@ -94,13 +94,13 @@ export const SendPost = () => {
             <div className="flex flex-col gap-6 flex-1">
                 <div className="flex gap-6 flex-col lg:flex-row justify-between">
                     <div className="flex flex-col gap-[15px] flex-1">
-                        <label htmlFor=""  className="text-h5">Title</label>
+                        <h5>Title</h5>
                         <div className="h-12">
                             <input type="text" value={formPost.title} onChange={(e) => setFormPost({...formPost, title:e.target.value})} className="h-full pl-4" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-[15px] flex-1">
-                        <label htmlFor=""  className="text-h5">Add Tags</label>
+                        <h5>Add Tags</h5>
                         <div className="h-12 relative">
                             <input type="text" 
                                 className={`h-full p-4 ${errorValue ? 'border-2 border-red-500' : 'border-none'}`} 

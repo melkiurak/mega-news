@@ -52,7 +52,6 @@ export const AddExplain = ({setForm}:AddImageProps) => {
        setExplainColor(color.value);
        console.log(color.value)
     };
-    
     return <div className="flex flex-col gap-[15px] flex-1">
         <h5>Explanation</h5>
         <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5">
@@ -75,8 +74,12 @@ export const AddExplain = ({setForm}:AddImageProps) => {
                 contentEditable={true}
                 onInput={() => {
                 if (explainRef.current) {
-                    setForm((prev:CreatePost) => ({...prev, explanation: explainRef.current!.innerHTML,}));
-                    }
+                    const text = explainRef.current.innerText
+                    const [title, ...rest] = text.split(/\n+/);
+                    const html = `<h4>${title.trim()}</h4><p>${rest.join('').trim()}</p>`
+                    explainRef.current.innerHTML = html
+                    setForm((prev:CreatePost) => ({...prev, explanation: explainRef.current!.innerHTML}));
+                }
                 }}
             >
             </div> 
