@@ -61,7 +61,7 @@ export const AddExplain = ({setForm, stylesHeight}:AddImageProps) => {
             explainRef.current.innerHTML = html;
         }
     }, [])
-    return <div className={`flex flex-col gap-[15px]  h-[511px] ${stylesHeight}`}>
+    return <div className={`flex flex-col gap-[15px] h-full`}>
         <h5 className="">Explanation</h5>
         <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5 h-full flex flex-col"  >
             <div className="flex justify-between items-center lg:max-w-[500px] gap-5">
