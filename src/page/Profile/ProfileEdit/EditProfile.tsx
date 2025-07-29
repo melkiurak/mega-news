@@ -2,9 +2,25 @@ import { AddExplain } from "@components/addExplain/AddExplain"
 import { AddImage } from "@components/addImage/AddImage"
 import { useState } from "react"
 import { FaRegFloppyDisk,  } from "react-icons/fa6";
+import type { User } from "src/types";
 
 export const ProfileEdit = () => {
-    const [formEdit, setFormEdit] = useState()
+    const [formEdit, setFormEdit] = useState<User>({
+        username: '',
+        isLogin: true,
+        id: '',
+        avatar: null,
+        firstName: '',
+        lastName:'',
+        email: '',
+        banner: null,
+        explanation: [],
+    });
+
+    console.log(formEdit.id)
+    const handlePutdate = async(e: React.FormEvent) => {
+        e.preventDefault();
+    }
     return <form className="flex flex-col gap-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             <label htmlFor="">
@@ -17,7 +33,7 @@ export const ProfileEdit = () => {
             </label>
             <label htmlFor="">
                 <h5>User Name</h5>
-                <input type="text" className="h-12 mt-3.5" />
+                <input type="text" className="h-12 mt-3.5" value={formEdit.username} onChange={(e) => setFormEdit({...formEdit, username: e.target.value})} />
             </label>
             <label htmlFor="">
                 <h5>Old Password</h5>
@@ -32,7 +48,9 @@ export const ProfileEdit = () => {
                 <input type="text" className="h-12 mt-3.5" />
             </label>
         </div>
-        <AddImage title="Add Banner" ImageHieghtStyle="h-[360px] md:h-[170px] lg:h-[204px]" ImageContentStyle=" md:flex-row"/>           
+        <div className="h-[394px] md:h-[204px]">
+            <AddImage title="Add Banner"  ImageContentStyle=" md:flex-row"/>           
+        </div>
         <div className="flex flex-col lg:flex-row gap-6 lg:h-[394px]">
             <div className=" h-[511px]  md:h-[394px] lg:h-full flex-1/2">
                 <AddExplain setForm={setFormEdit}/>
@@ -42,7 +60,7 @@ export const ProfileEdit = () => {
             </div>
         </div>
         <div className="flex w-full justify-end">
-            <button className="bg-Primary/75 text-white flex items-center gap-2 rounded-xl  px-6 h-10">
+            <button className="bg-Primary/75 text-white flex items-center gap-2 rounded-xl  px-6 h-10" onClick={(e) => handlePutdate(e)}>
                 <FaRegFloppyDisk/>
                 <span className="text-btn">save</span>
             </button>

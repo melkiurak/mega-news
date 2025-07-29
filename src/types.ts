@@ -8,6 +8,15 @@ export interface User {
   id: string | null;
   username: string;
   avatar?: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  banner: string | null;
+  explanation: Explanation[];
+}
+export interface ChangePasswordData {
+  oldPassword: string;
+  newPassword: string;
 }
 export interface Explanation {
   title: string;

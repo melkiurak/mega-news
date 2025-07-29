@@ -10,7 +10,29 @@ export const dataTags = async () => {
       image: tag.get("Image") || null,
     }));
   } catch (error) {
-    console.error("Ошибка при получении данных", error);
+    console.error("Error receiving dataTags", error);
+    throw error;
+  }
+};
+
+export const dataUsers = async () => {
+  try {
+    const userQuery = Parse.Object.extend("_User");
+    const query = new Parse.Query(userQuery);
+    const result = await query.find();
+    return result.map((user) => ({
+      isLogin: false,
+      id: user.id ?? null,
+      username: user.get("username") ?? "",
+      avatar: user.get("avatar") ?? null,
+      firstName: user.get("firstName") ?? null,
+      lastName: user.get("lastName") ?? null,
+      email: user.get("email") ?? null,
+      banner: user.get("banner") ?? null,
+      explanation: user.get("explanation") ?? [],
+    }));
+  } catch (error) {
+    console.error("Error receiving dataUser ", error);
     throw error;
   }
 };
@@ -37,7 +59,7 @@ export const dataPosts = async () => {
       };
     });
   } catch (error) {
-    console.error("Ошибка при получении данных", error);
+    console.error("Error receiving dataPosts", error);
     throw error;
   }
 };
