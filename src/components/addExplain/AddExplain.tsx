@@ -7,6 +7,7 @@ import type { CreatePost } from "src/types";
 
 interface AddImageProps {
     setForm:  React.Dispatch<React.SetStateAction<any>>,
+    stylesHeight: string,
 }
 
 const postTools = [
@@ -17,7 +18,7 @@ const postTools = [
     {name: 'Link', icon: FaLink},
 ];
 
-export const AddExplain = ({setForm}:AddImageProps) => {
+export const AddExplain = ({setForm, stylesHeight}:AddImageProps) => {
     const [explainColor, setExplainColor ] = useState('#000000');
 
     const explainImgRef = useRef<HTMLInputElement>(null);
@@ -60,9 +61,9 @@ export const AddExplain = ({setForm}:AddImageProps) => {
             explainRef.current.innerHTML = html;
         }
     }, [])
-    return <div className="flex flex-col gap-[15px] flex-1">
-        <h5>Explanation</h5>
-        <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5">
+    return <div className={`flex flex-col gap-[15px]  h-[511px] ${stylesHeight}`}>
+        <h5 className="">Explanation</h5>
+        <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5 h-full flex flex-col"  >
             <div className="flex justify-between items-center lg:max-w-[500px] gap-5">
                 {postTools.map((tools, index) => (
                     <button key={index} className="bg-[#F5F5F5] rounded-xl py-2.5 flex items-center justify-center gap-2 flex-1" type="button" onClick={() => handleTools(tools.name)}>
@@ -77,7 +78,7 @@ export const AddExplain = ({setForm}:AddImageProps) => {
                 id="Explanation"
                 dir="auto"
                 ref={explainRef}
-                className={`border-none bg-[#F5F5F5] p-5 rounded-xl w-full break-all h-[377px] resize-none outline-none mt-6 whitespace-pre-wrap overflow-auto wrap-break-word`}
+                className={`flex-1 border-none bg-[#F5F5F5] p-5 rounded-xl w-full break-all resize-none outline-none mt-6 whitespace-pre-wrap overflow-auto wrap-break-word`}
                 style={{ color: explainColor }}
                 contentEditable={true}
                 onInput={() => {

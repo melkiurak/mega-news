@@ -32,9 +32,9 @@ export const ProfileEdit = () => {
             </label>
         </div>
         <AddImage title="Add Banner" ImageStyle="h-[360px] md:h-[170px] lg:h-[204px]" ImageContentStyle=" md:flex-row"/>           
-        <div className="flex flex-col lg:flex-row gap-6 ">
-            <AddExplain setForm={setFormEdit}/>
-            <AddImage title="Add Image" ImageStyle="h-[394px]" ImageContentStyle="md:flex-col"/>           
+        <div className="flex flex-col lg:flex-row gap-6 lg:h-[394px]">
+            <AddExplain setForm={setFormEdit} stylesHeight="md:h-[394px] lg:h-full"/>
+            <AddImage title="Add Image" ImageStyle="h-[394px] lg:h-full" ImageContentStyle="md:flex-col"/>           
         </div>
     </form>
 }
