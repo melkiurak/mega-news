@@ -5,6 +5,8 @@ import { useState } from "react"
 import { FaRegFloppyDisk,  } from "react-icons/fa6";
 import type { User } from "src/types";
 
+
+
 export const ProfileEdit = () => {
     const [formEdit, setFormEdit] = useState<User>({
         username: '',
@@ -17,26 +19,23 @@ export const ProfileEdit = () => {
         banner: null,
         explanation: [],
     });
-    const checkFieldsInput = (user, fields) => {
-        if(data && data.trim() !== ''){
-
-        }else{
-            console.log(':',)
-        }
+    const checkFieldsInput = (currentUser: Parse.User, formEdit: Record<string, any>, fields:string[]) => {
+        fields.forEach((field) => {
+            const value = formEdit[field];
+            if(typeof value === 'string' && value.trim() !== ''){
+                currentUser.set(field, value ?? null)
+            }
+        })
     };
     const handlePutdate = async(e: React.FormEvent) => {
         e.preventDefault();
         try{
             const currentUser = await Parse.User.currentAsync();
-            const filedsToUpdate = ['username','lastName', 'firstName']
-            
-            checkFieldsInput(currentUser, filedsToUpdate);
-
-            currentUser?.set('username', formEdit.username ?? null);
-            currentUser?.set('lastName', formEdit.lastName ?? null);
-            currentUser?.set('firstName', formEdit.firstName ?? null);
-
-            await currentUser?.save();
+            if(currentUser ){
+                const filedsToUpdate = ['username','lastName', 'firstName']
+                checkFieldsInput(currentUser, formEdit, filedsToUpdate);
+                await currentUser?.save();
+            }
         }catch(error){
             console.error('Error in change data',error)
         }
