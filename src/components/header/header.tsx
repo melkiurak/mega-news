@@ -33,7 +33,7 @@ export const Header = () => {
                 <div className="fixed top-0 left-0 bg-white w-full h-full z-10 px-5 py-[15px] flex flex-col gap-5">
                     <div className="flex justify-between items-center">
                         <h4 className="font-roboto font-bold text-[22px] text-[#FC4308]"><Link to="/">Mega.news</Link></h4>
-                        <button className="w-12 h-12" onClick={() => setBurger(false)}><IoCloseSharp className="w-full h-full" /></button>
+                        <button className="w-7 h-7" onClick={() => setBurger(false)}><IoCloseSharp className="w-full h-full" /></button>
                     </div>
                     <div>
                         <button className="bg-[#F5F5F5] rounded-xl flex items-center justify-between w-full p-[15px]">
