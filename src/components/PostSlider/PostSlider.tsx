@@ -3,6 +3,7 @@ import type { Post } from '../../types'
 import { CiBookmark } from "react-icons/ci";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Avatar } from '@components/avatar/avatar';
 
 interface PostSliderProps {
   posts: Post[];
@@ -56,7 +57,7 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, ri
                             <p className='px-1.5 paragraph text-[#3E3232]/75 line-clamp-2'>{post.explanation}</p>
                             <div className='flex items-center bg-[#F5F5F5] rounded-xl px-3.5 py-3.5'>
                                 <div className='flex gap-2.5 items-center flex-1' >
-                                    <div className='bg-purple-500 w-11 h-11 rounded-xl'></div>
+                                    <Avatar avatar={post.user.avatar} username={post.user.username}/>
                                     <div>
                                         <p>{post.user.username}</p>
                                         <p className='text-[#3E3232]/75 font-roboto text-xs'>{new Date(post.date).toLocaleDateString('en-US', {

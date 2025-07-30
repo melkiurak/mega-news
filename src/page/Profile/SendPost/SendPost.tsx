@@ -31,7 +31,6 @@ export const SendPost = () => {
     const [errorValue, setErrorValue] = useState(false);
     const { tags, handleAddTag, handleRemoveTag, } = useTags(maxTags);
 
-    const { user } = useSelector((state:storeType) => state.user);
 
     
     const AddTag = (tag?:string) => {
@@ -71,13 +70,15 @@ export const SendPost = () => {
         } else {
             console.log('File not')
         }
+        
         const date = new Date();
+        const currentUser = await Parse.User.currentAsync();
 
         post.set('title', formPost.title );
         post.set('explanation', formPost.explanation );
         post.set('imagePost', parseFile );
         post.set('tags', formPost.tags );
-        post.set('user', user);
+        post.set('user', currentUser);
         post.set('date', date);
         post.set('favoriteCount', formPost.favoriteCount)
         try{

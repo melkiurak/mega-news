@@ -30,7 +30,11 @@ export const dataPosts = async () => {
         imagePost: imagePost ? imagePost.url() : "",
         explanation: post.get("explanation"),
         tags: post.get("tags"),
-        user: user,
+        user: {
+          username: user?.get("username") ?? "",
+          avatar: user?.get("avatar")?.url() ?? null,
+          id: user?.id ?? "",
+        },
         date: post.get("date"),
         favoriteCount: post.get("favoriteCount"),
         objectId: post.id ?? "underfine",

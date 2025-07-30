@@ -4,6 +4,8 @@ import { AddImage } from "@components/addImage/AddImage"
 import { useState } from "react"
 import { FaRegFloppyDisk,  } from "react-icons/fa6";
 import type { User } from "src/types";
+import { useDispatch } from 'react-redux';
+import { setUser } from '@reducer/users-reducer';
 
 
 
@@ -21,6 +23,11 @@ export const ProfileEdit = () => {
     });
     const [avatarValue, setAvatarValue] = useState<string | null>(null);
     const [bannerValue, setBannerValue] = useState<string | null>(null);
+
+    const dispatch = useDispatch();
+
+
+
     const checkFieldsInput = (currentUser: Parse.User, formEdit: Record<string, any>, fields:string[]) => {
         fields.forEach((field) => {
             const value = formEdit[field];
@@ -40,6 +47,7 @@ export const ProfileEdit = () => {
                 const filedsToUpdate = ['username', 'lastName', 'firstName', 'email', 'avatar', 'banner']
                 checkFieldsInput(currentUser, formEdit, filedsToUpdate);
                 await currentUser?.save();
+                dispatch(setUser(currentUser.toJSON()))
             }
         }catch(error){
             console.error('Error in change data',error)

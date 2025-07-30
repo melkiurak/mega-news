@@ -11,11 +11,11 @@ interface AddImageProps {
 }
 
 const postTools = [
-    {name: 'Image', icon:BsCardImage},
-    {name: 'Color', icon:IoMdColorFilter},
-    {name: 'Text', icon: FaCode},
-    {name: 'Align', icon: FaAlignLeft},
-    {name: 'Link', icon: FaLink},
+    {name: 'Image', icon: BsCardImage, id: 'image'},
+    {name: 'Color', icon: IoMdColorFilter, id: 'color'},
+    {name: 'Text', icon: FaCode, id: 'text'},
+    {name: 'Align', icon: FaAlignLeft, id: 'align'},
+    {name: 'Link', icon: FaLink, id: 'link'},
 ];
 
 export const AddExplain = ({setForm, stylesHeight}:AddImageProps) => {
@@ -65,8 +65,8 @@ export const AddExplain = ({setForm, stylesHeight}:AddImageProps) => {
         <h5 className="">Explanation</h5>
         <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5 h-full flex flex-col"  >
             <div className="flex justify-between items-center lg:max-w-[500px] gap-5">
-                {postTools.map((tools, index) => (
-                    <button key={index} className="bg-[#F5F5F5] rounded-xl py-2.5 flex items-center justify-center gap-2 flex-1" type="button" onClick={() => handleTools(tools.name)}>
+                {postTools.map((tools) => (
+                    <button key={tools.id} className="bg-[#F5F5F5] rounded-xl py-2.5 flex items-center justify-center gap-2 flex-1" type="button" onClick={() => handleTools(tools.name)}>
                         <span className="text-[#3E323280] text-base">{React.createElement(tools.icon)}</span>
                         <span className="hidden md:block text-btn text-[#3E32324B]">{tools.name}</span>
                     </button>

@@ -10,12 +10,14 @@ function Layout() {
   const dispacth  = useDispatch();
   useEffect(() => {
     const user = Parse.User.current(); 
+    const avatarFile = user?.get('avatar');
+    const bannerFile = user?.get('banner');
     if(user) {
       dispacth(logIn());
       dispacth(setUser({
         username: user.get('username'),
-        avatar: user.get('avatar').url(),
-        banner: user.get('banner').url(),
+        avatar: avatarFile ? bannerFile.url() : null, 
+        banner: bannerFile ? bannerFile.url() : null,
       }))
     }
   },[dispacth])

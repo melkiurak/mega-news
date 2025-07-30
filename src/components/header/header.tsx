@@ -85,7 +85,7 @@ export const Header = () => {
                     <div className="w-full">
                         {isLogin ? (
                             <div className="flex items-center gap-2">
-                                <Avatar user={user}/>
+                                <Avatar avatar={user?.avatar} username={user?.username || ''} />
                                 <h5 className="text-h5 max-w-[54px] truncate">{user?.username}</h5>
                                 <button type="button" onClick={() => setUserManu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
                             </div>   
