@@ -14,6 +14,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { RxExit } from "react-icons/rx";
 import rectangle from '@icons/rectangle.png'
+import { Avatar } from "@components/avatar/avatar";
 
 
 export const Header = () => {
@@ -84,14 +85,7 @@ export const Header = () => {
                     <div className="w-full">
                         {isLogin ? (
                             <div className="flex items-center gap-2">
-                                {user?.avatar ? (
-                                    <div className="h-12 w-12 bg-no-repeat bg-center bg-cover rounded-xl"  style={{backgroundImage: `url(${user?.avatar})`}}>
-                                    </div>
-                                ) : (
-                                    <div className="bg-[#F5F5F5] rounded-xl w-12 h-12 flex items-center justify-center">
-                                        <h5 className="text-h5 text-black">{user?.username?.charAt(0).toLocaleUpperCase()}</h5>
-                                    </div>
-                                )}
+                                <Avatar user={user}/>
                                 <h5 className="text-h5 max-w-[54px] truncate">{user?.username}</h5>
                                 <button type="button" onClick={() => setUserManu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
                             </div>   
