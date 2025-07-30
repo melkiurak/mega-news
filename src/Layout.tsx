@@ -14,7 +14,8 @@ function Layout() {
       dispacth(logIn());
       dispacth(setUser({
         username: user.get('username'),
-        avatar: user.get('avatar'),
+        avatar: user.get('avatar').url(),
+        banner: user.get('banner').url(),
       }))
     }
   },[dispacth])

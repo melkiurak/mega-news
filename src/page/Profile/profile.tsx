@@ -1,14 +1,17 @@
 import { Link, Outlet } from "react-router-dom"
 import { BreadCrumb } from "../../components/breadcrumb/breadCrumb"
 import { FaUserEdit } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import type { storeType } from "src/redux/store";
 export const Profile = () => {
+    const { user } = useSelector((state:storeType) => state.user);
     return <div className="flex flex-col gap-11">
         <BreadCrumb/>
         <div className="flex flex-col gap-[15px] bg-[#E6E6E6] p-2.5 rounded-xl">
-            <div className="hidden sm:block bg-purple-600 h-[150px] w-full rounded-xl"></div>
+            <div className="hidden sm:block  h-[150px] w-full rounded-xl bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${user?.banner})`}}></div>
             <div className="flex lg:justify-between items-center  w-full relative">
                 <div className="flex items-center">
-                    <div className="bg-amber-500 w-[50px] phone:w-[75px] aspect-square rounded-xl mr-2.5"></div>
+                    <div className=" w-[50px] phone:w-[75px] aspect-square rounded-xl mr-2.5 bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${user?.avatar})`}}></div>
                     <h5 className="text-h5 hidden lg:block">Louis Hoebregts</h5>
                 </div>
                 <nav className="flex flex-col gap-[17px]">

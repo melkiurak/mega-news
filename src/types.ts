@@ -1,17 +1,17 @@
 export interface CreateUser {
   username: string;
   password: string;
-  avatar: File | null;
+  avatar: string | null;
 }
 export interface User {
   isLogin: boolean;
   id: string | null;
   username: string;
-  avatar?: File | null;
+  avatar?: string | null;
   firstName: string | null;
   lastName: string | null;
   email: string | null;
-  banner: File | null;
+  banner: string | null;
   explanation: Explanation[];
 }
 export interface ChangePasswordData {
@@ -21,14 +21,14 @@ export interface ChangePasswordData {
 export interface Explanation {
   title: string;
   paragraph: string;
-  img: File | null;
+  img: string | null;
 }
 export interface CreatePost {
   user: User[];
   date: string;
   title: string;
   tags: Tags[];
-  imagePost: File | null;
+  imagePost: string | null;
   explanation: Explanation[];
   favoriteCount: number;
 }
@@ -44,7 +44,7 @@ export interface Post {
   favoriteCount: number;
 }
 export interface Explanation {
-  image: File | null;
+  image: string | null;
   link: string;
   text: string;
   align: string;
