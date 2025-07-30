@@ -65,6 +65,7 @@ export const SendPost = () => {
         const Post = Parse.Object.extend("Posts");
         const post = new Post();
         let parseFile;
+        
         if(formPost.imagePost && formPost.imagePost.name ){
             parseFile  = new Parse.File(formPost.imagePost?.name, formPost.imagePost);
         } else {

@@ -19,11 +19,16 @@ export const ProfileEdit = () => {
         banner: null,
         explanation: [],
     });
+    const [avatarValue, setAvatarValue] = useState<string | null>(null);
+    const [bannerValue, setBannerValue] = useState<string | null>(null);
     const checkFieldsInput = (currentUser: Parse.User, formEdit: Record<string, any>, fields:string[]) => {
         fields.forEach((field) => {
             const value = formEdit[field];
             if(typeof value === 'string' && value.trim() !== ''){
                 currentUser.set(field, value ?? null)
+            } else if(value instanceof File) {
+                const parseFile = new Parse.File(`${field}`, value);
+                currentUser.set(field, parseFile)
             }
         })
     };
@@ -32,7 +37,7 @@ export const ProfileEdit = () => {
         try{
             const currentUser = await Parse.User.currentAsync();
             if(currentUser ){
-                const filedsToUpdate = ['username','lastName', 'firstName']
+                const filedsToUpdate = ['username', 'lastName', 'firstName', 'email', 'avatar', 'banner']
                 checkFieldsInput(currentUser, formEdit, filedsToUpdate);
                 await currentUser?.save();
             }
@@ -68,14 +73,14 @@ export const ProfileEdit = () => {
             </label>
         </div>
         <div className="h-[394px] md:h-[204px]">
-            <AddImage title="Add Banner"  ImageContentStyle=" md:flex-row"/>           
+            <AddImage title="Add Banner"  ImageContentStyle=" md:flex-row" image={bannerValue} onImageChange={(file) => {setFormEdit((prev) => ({...prev, banner: file})); setBannerValue(URL.createObjectURL(file));}}/>           
         </div>
         <div className="flex flex-col lg:flex-row gap-6 lg:h-[394px]">
             <div className=" h-[511px]  md:h-[394px] lg:h-full flex-1/2">
                 <AddExplain setForm={setFormEdit}/>
             </div>
             <div className="h-[394px] lg:h-full flex-1">
-                <AddImage title="Add Image" ImageContentStyle="md:flex-col"/>           
+                <AddImage title="Add Image" ImageContentStyle="md:flex-col" image={avatarValue} onImageChange={(file) => {setFormEdit((prev) => ({...prev, avatar: file})); setAvatarValue(URL.createObjectURL(file));}}/>           
             </div>
         </div>
         <div className="flex w-full justify-end">

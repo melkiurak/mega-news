@@ -7,11 +7,11 @@ export interface User {
   isLogin: boolean;
   id: string | null;
   username: string;
-  avatar?: string | null;
+  avatar?: File | null;
   firstName: string | null;
   lastName: string | null;
   email: string | null;
-  banner: string | null;
+  banner: File | null;
   explanation: Explanation[];
 }
 export interface ChangePasswordData {
