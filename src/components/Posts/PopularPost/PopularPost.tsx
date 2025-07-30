@@ -15,6 +15,7 @@ export const PopularPost = () => {
             postCardStyle={postSliderStyles.card}
             postItemStyle={postSliderStyles.item}
             postImageStyle={postSliderStyles.image}
+            postDetailsStyle=""
             rightControl={<ButtonSwitch/>}  
          />
     </div>

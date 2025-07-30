@@ -16,7 +16,7 @@ function Layout() {
       dispacth(logIn());
       dispacth(setUser({
         username: user.get('username'),
-        avatar: avatarFile ? bannerFile.url() : null, 
+        avatar: avatarFile ? avatarFile.url() : null, 
         banner: bannerFile ? bannerFile.url() : null,
       }))
     }

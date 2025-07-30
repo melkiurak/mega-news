@@ -1,7 +1,7 @@
 import type { User } from "src/types"
 
 
-export const Avatar = ({avatar, username}:User) => {
+export const Avatar = ({avatar, username}:Partial<User>) => {
 
     return <div>
         {avatar ? (

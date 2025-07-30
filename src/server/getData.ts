@@ -8,6 +8,7 @@ export const dataTags = async () => {
     return result.map((tag) => ({
       name: tag.get("name"),
       image: tag.get("Image") || null,
+      id: tag.id ?? "underfine",
     }));
   } catch (error) {
     console.error("Error receiving dataTags", error);

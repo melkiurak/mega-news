@@ -53,4 +53,5 @@ export interface Explanation {
 export interface Tags {
   name: string;
   image: string | null;
+  id: string | null;
 }
