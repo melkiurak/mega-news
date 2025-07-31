@@ -15,6 +15,7 @@ export const Registration = () => {
 
     const dispatch = useDispatch();
     const password = watch("password");
+    
     const onSubmit: SubmitHandler<CreateUser> =  async (data) => {
         if(data.password !== data.repeatPassword){
             alert('Password do not match');
