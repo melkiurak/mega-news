@@ -19,12 +19,13 @@ import { Avatar } from "@components/avatar/avatar";
 
 export const Header = () => {
     const [burger, setBurger] = useState(false);
-    const [userMenu, setUserManu] = useState(false);
+    const [userMenu, setUserMenu] = useState(false);
     const dispacth = useDispatch();
     const { isLogin, user } = useSelector((state:storeType) => state.user);
 
     const handelExit = async () => {
         await Parse.User.logOut();
+        setUserMenu(false);
         dispacth(logOut());
     };
     return <header className=" mt-[45px] mb-[58px]">
@@ -87,7 +88,7 @@ export const Header = () => {
                             <div className="flex items-center gap-2">
                                 <Avatar avatar={user?.avatar} username={user?.username || ''} />
                                 <h5 className="text-h5 max-w-[54px] truncate">{user?.username}</h5>
-                                <button type="button" onClick={() => setUserManu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
+                                <button type="button" onClick={() => setUserMenu(prev => !prev) }><IoIosArrowDown className="text-xl text-[#3E323280]"/></button>
                             </div>   
                         ) : (
                             <NavLink to='/Auth' end>
