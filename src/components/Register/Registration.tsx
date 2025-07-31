@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { logIn, setUser } from "../../redux/reducers/users-reducer";
 import  Parse  from '@lib/parseClient';
 import { useForm, type SubmitHandler } from "react-hook-form"
+import { useNavigate } from "react-router";
 
 export const Registration = () => {
     const [iconVisibleUsername, setIconVisibleUsername] = useState(false);
@@ -15,7 +16,8 @@ export const Registration = () => {
 
     const dispatch = useDispatch();
     const password = watch("password");
-    
+    const navigate = useNavigate();
+
     const onSubmit: SubmitHandler<CreateUser> =  async (data) => {
         if(data.password !== data.repeatPassword){
             alert('Password do not match');
@@ -27,7 +29,8 @@ export const Registration = () => {
             dispatch(setUser({
                 username: user.get('username'),
                 avatar: user.get('avatar'),
-            }))
+            }));
+            navigate('/Profile')
         } catch(error){
             console.error('Error register', error);
         }

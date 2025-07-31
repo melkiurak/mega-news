@@ -5,6 +5,7 @@ import  Parse  from '@lib/parseClient';
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { CreateUser } from "src/types";
+import { useNavigate } from "react-router";
 interface LoginProps {
     setRegistrationShow: (value: boolean) => void,
 }
@@ -12,10 +13,12 @@ interface LoginProps {
 export const Login = ({setRegistrationShow}: LoginProps) => {
     const {register, handleSubmit, watch, formState: { errors } } = useForm<CreateUser>();    
     const [authError, setAuthError] = useState<string | null>(null);
-    
+    const navigate = useNavigate();
+
     const onSubmit: SubmitHandler<CreateUser> =  async (data) => {
         try{
             const user = await Parse.User.logIn(data.username, data.password);
+            navigate('/Profile')
             console.log("Успешный логин", user);
         } catch (error:any) {
             setAuthError(error.message || "Ошибка авторизации");
