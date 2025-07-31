@@ -8,8 +8,12 @@ import  Parse  from '@lib/parseClient';
 import { useForm, type SubmitHandler } from "react-hook-form"
 
 export const Registration = () => {
-    const dispatch = useDispatch();
+    const [iconVisibleUsername, setIconVisibleUsername] = useState(false);
+    const [iconVisiblePassword, setIconVisiblePassword] = useState(false);
+    const [iconVisibleRepeat, setIconVisibleRepeat] = useState(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm<CreateUser>();    
+
+    const dispatch = useDispatch();
     const password = watch("password");
     const onSubmit: SubmitHandler<CreateUser> =  async (data) => {
         if(data.password !== data.repeatPassword){
@@ -34,24 +38,24 @@ export const Registration = () => {
             <label className="flex flex-col gap-2">
                 <h5>Enter the name</h5>
                 <div className="h-10 relative">
-                    <input type="text"  className=" h-full" {...register("username", { required: "Username is required" })}/>
-                    <FaRegUser className="absolute top-1/2 -translate-y-1/2 right-3"/>
+                    <input type="text"  className=" h-full" {...register("username", { required: "Username is required" })} onFocus={() => setIconVisibleUsername(true)} onBlur={() => setIconVisibleUsername(false)}/>
+                    <FaRegUser className={`absolute top-1/2 -translate-y-1/2 right-3 ${iconVisibleUsername ? 'hidden' : 'block'}`}/>
                 </div>
                 {errors.username && <span className="text-btn text-red-500">{errors.username.message}</span>}
             </label>
             <label className="flex flex-col gap-2">
                 <h5>Enter the password</h5>
                 <div className="h-10 relative">
-                    <input  type="password"  className=" h-full" {...register("password", { required: "Password is required", minLength: 6 })} />
-                    <RxLockClosed className="absolute top-1/2 -translate-y-1/2 right-3"/>
+                    <input  type="password"  className=" h-full" {...register("password", { required: "Password is required", minLength: 6 })} onFocus={() => setIconVisiblePassword(true)} onBlur={() => setIconVisiblePassword(false)} />
+                    <RxLockClosed className={`absolute top-1/2 -translate-y-1/2 right-3 ${iconVisiblePassword ? 'hidden' : 'block'}`}/>
                 </div>
                 {errors.password && <span className="text-btn text-red-500">{errors.password.message || "Password is too short"}</span>}
             </label>
             <label className="flex flex-col gap-2">
                 <h5>Repeat the password</h5>
                 <div className="h-10 relative">
-                    <input className="h-full" type="password"   {...register("repeatPassword", {required: "Repeat password is required",validate: value =>value === password || "Passwords do not match",})} />
-                    <RxLockClosed className="absolute top-1/2 -translate-y-1/2 right-3"/>
+                    <input className="h-full" type="password"   {...register("repeatPassword", {required: "Repeat password is required",validate: value =>value === password || "Passwords do not match",})} onFocus={() => setIconVisibleRepeat(true)} onBlur={() => setIconVisibleRepeat(false)} />
+                    <RxLockClosed className={`absolute top-1/2 -translate-y-1/2 right-3 ${iconVisibleRepeat ? 'hidden' : 'block'}`}/>
                 </div>
                 {errors.repeatPassword && <span className="text-btn text-red-500">{errors.repeatPassword.message}</span>}
             </label>
