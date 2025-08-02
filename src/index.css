@@ -26,6 +26,9 @@ input {
 .text-h4 {
   @apply font-roboto text-xl font-medium text-black;
 }
+h4 {
+  @apply font-roboto text-xl font-medium;
+}
 h5 {
   @apply font-roboto text-base font-medium;
 }

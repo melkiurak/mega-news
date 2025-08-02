@@ -52,7 +52,7 @@ export const Header = () => {
                                 <IoIosArrowDown className="w-5 h-5"/>
                             </li>
                             <li className="py-[15px] px-2"><a href="#s" className="text-h5">Contact Us</a></li>
-                            <li className="py-[15px] px-2"><a href="#s" className="text-h5">About Us</a></li>
+                            <li className="py-[15px] px-2"><h5><Link to={'/About'}>About Us</Link></h5></li>
                         </ul>
                     </nav>
                 </div>
@@ -77,7 +77,7 @@ export const Header = () => {
                             </button>
                         </li>
                         <li><a href="" className="text-h5">contact us</a></li>
-                        <li><a href="" className="text-h5">about us</a></li>
+                        <li><h5><Link to={'/About'}>About Us</Link></h5></li>
                     </ul>
                 </nav>
             </div>
