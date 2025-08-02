@@ -1,7 +1,7 @@
 import rectangle from '@icons/rectangle.png'
 import type { Post } from '../../types'
 import { CiBookmark } from "react-icons/ci";
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Avatar } from '@components/avatar/avatar';
 
@@ -26,6 +26,10 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, ri
         navigate(`/Post/${objectId}`)
     }
 
+    const handleMarketPost = useCallback((objectId: string) => {
+        console.log('Save the post:', objectId)
+    },[]);
+    
     useEffect(() => {
         const updateSlise = () => {
             if(window.outerWidth <= 425){
@@ -68,7 +72,7 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, ri
                                             })}</p>
                                         </div>
                                     </div>
-                                    <button className='text-[#3E3232]/50 text-xl'>
+                                    <button className='text-[#3E3232]/50 text-xl'   onClick={e => {e.stopPropagation(); e.preventDefault();handleMarketPost(post.objectId);}}>
                                         <CiBookmark/>
                                     </button>
                                 </div>
