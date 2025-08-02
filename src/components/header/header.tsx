@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
@@ -48,10 +48,10 @@ export const Header = () => {
                     <nav>
                         <ul>
                             <li className="py-[15px] px-2 flex justify-between items-center" >
-                                <a href="#d" className="text-h5">Pages</a>
+                                <h5  className="text-h5">Pages</h5>
                                 <IoIosArrowDown className="w-5 h-5"/>
                             </li>
-                            <li className="py-[15px] px-2"><a href="#s" className="text-h5">Contact Us</a></li>
+                            <li className="py-[15px] px-2"><h5>Contact Us</h5></li>
                             <li className="py-[15px] px-2"><h5><Link to={'/About'}>About Us</Link></h5></li>
                         </ul>
                     </nav>
@@ -68,15 +68,15 @@ export const Header = () => {
                     <ul className="flex items-center gap-[34px]">
                         <li >
                             <button>
-                                <span className="text-h5">Categories</span>
+                                <h5>Categories</h5>
                             </button>
                         </li>
                         <li>
                             <button>
-                                <span className="text-h5">Pages</span>
+                                <h5>Pages</h5>
                             </button>
                         </li>
-                        <li><a href="" className="text-h5">contact us</a></li>
+                        <li><h5 className="text-h5">contact us</h5></li>
                         <li><h5><Link to={'/About'}>About Us</Link></h5></li>
                     </ul>
                 </nav>
