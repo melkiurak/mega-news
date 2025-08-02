@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePost } from "@hooks/usePost";
 import { ButtonSwitch } from "@components/buttonSwitch/ButtonSwitch";
 import { PostSlider } from "@components/PostSlider/PostSlider"
@@ -14,10 +14,10 @@ export const NewPost = () => {
     const weekendDate = new Date();
     weekendDate.setDate(nowDate.getDate() - 7)
 
-    const newPost = posts.filter(post => {
+    const newPost = useMemo( () =>  posts.filter(post => {
         const postDate = new Date(post.date)
         return postDate >= weekendDate && postDate <= nowDate;
-    });
+    }), [posts]);
     useEffect(() => {
         setIsMobile(window.innerWidth  <= 425)
     },[])
