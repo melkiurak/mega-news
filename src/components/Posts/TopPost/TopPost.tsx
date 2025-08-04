@@ -1,11 +1,11 @@
-import { usePost } from "@hooks/usePost";
 import { postSliderStyles } from "@styles/postSlider";
 import { ButtonSwitch } from "@components/buttonSwitch/ButtonSwitch";
 import { PostSlider } from "@components/PostSlider/PostSlider"
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
+import { PostContext } from "@page/Home/Home";
 
 export const TopPost = () => {
-    const {posts} = usePost();
+    const  posts  = useContext(PostContext);
     const titleBlock = 'Top Post'
     const topPost = useMemo(() => posts.filter(post => post.favoriteCount >= 50), [posts]);
     return <div>

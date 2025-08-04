@@ -1,7 +1,7 @@
 import rectangle from '@icons/rectangle.png'
 import type { Post } from '../../types'
 import { CiBookmark } from "react-icons/ci";
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Avatar } from '@components/avatar/avatar';
 
@@ -16,16 +16,17 @@ interface PostSliderProps {
 }
 
 
-export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, rightControl, postImageStyle, postDetailsStyle}:PostSliderProps) => {
+export const  PostSlider = memo(function PostSlider({posts, titleBlock, postCardStyle, postItemStyle, rightControl, postImageStyle, postDetailsStyle}: PostSliderProps) {
+
     const [slider, setSlider] = useState(0)
     const [visibleSlides, setVisibleSlides] = useState(4);
-
+    
     const navigate = useNavigate();
-
+    
     const handlePage = (objectId: string) => {
         navigate(`/Post/${objectId}`)
     }
-
+    
     const handleMarketPost = useCallback((objectId: string) => {
         console.log('Save the post:', objectId)
     },[]);
@@ -83,4 +84,4 @@ export const  PostSlider = ({posts, titleBlock, postCardStyle, postItemStyle, ri
             </div>
         </div>
     </div> 
-}
+});

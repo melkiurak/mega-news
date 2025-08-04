@@ -1,12 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
-import { usePost } from "@hooks/usePost";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { ButtonSwitch } from "@components/buttonSwitch/ButtonSwitch";
 import { PostSlider } from "@components/PostSlider/PostSlider"
 import { ButtonShowAll } from "@components/buttonShowAll/buttonShowAll"
+import { PostContext } from "@page/Home/Home";
 
 
 export const NewPost = () => {
-    const { posts } = usePost();
+    const  posts  = useContext(PostContext);
     const [isMobile, setIsMobile] = useState(false);
     const titleBlock = "New Posts";
 
@@ -14,7 +14,7 @@ export const NewPost = () => {
     const weekendDate = new Date();
     weekendDate.setDate(nowDate.getDate() - 7)
 
-    const newPost = useMemo( () =>  posts.filter(post => {
+    const newPost = useMemo(() =>  posts.filter(post => {
         const postDate = new Date(post.date)
         return postDate >= weekendDate && postDate <= nowDate;
     }), [posts]);
