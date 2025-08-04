@@ -133,10 +133,14 @@ export const SendPost = () => {
                         </div>
                     </div>
                 </div>
-                <AddExplain setForm={setFormPost} />
+                <div className="h-[511px] ">
+                    <AddExplain setForm={setFormPost} />
+                </div>
             </div>
             <div className="flex flex-col gap-[25px] lg:max-w-[360px] w-full">
-                <AddImage title="Add Image" image={imageValue}  onImageChange={(file) => {setFormPost((prev) => ({ ...prev, imagePost: file })); setImageValue(URL.createObjectURL(file));}}/>
+                <div className="h-[394px]">
+                    <AddImage title="Add Image" image={imageValue}  onImageChange={(file) => {setFormPost((prev) => ({ ...prev, imagePost: file })); setImageValue(URL.createObjectURL(file));}}/>
+                </div>
                 <div className="flex justify-end">
                     <div className="flex justify-between gap-3 max-w-[280px] md:max-w-[360px] w-full">
                         <button className="flex-1 bg-[#F5F5F5] rounded-xl  flex items-center justify-center py-2 gap-2 text-[#3E3232BF]">

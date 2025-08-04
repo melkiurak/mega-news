@@ -53,14 +53,6 @@ export const AddExplain = ({setForm, stylesHeight}:AddImageProps) => {
        setExplainColor(color.value);
        console.log(color.value)
     };
-    useEffect(() => {
-        if (explainRef.current) {
-            const text = explainRef.current.innerText;
-            const [title, ...rest] = text.split(/\n+/);
-            const html = `<h4>${title.trim()}</h4><p>${rest.join('\n').trim()}</p>`;
-            explainRef.current.innerHTML = html;
-        }
-    }, [])
     return <div className={`flex flex-col gap-[15px] h-full`}>
         <h5 className="">Explanation</h5>
         <div className="bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.1)] px-3 py-5 h-full flex flex-col"  >
@@ -88,7 +80,6 @@ export const AddExplain = ({setForm, stylesHeight}:AddImageProps) => {
                 }}
             >
             </div> 
-            
         </div>
     </div>
 }
